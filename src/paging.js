@@ -1,6 +1,6 @@
 import {fetchMovies, moviesContainer} from './app.js';
 
-const SHOWING_PAGE_COUNT = 10;
+const SHOWING_PAGE_COUNT = 10; // 보여지는 카운트 개수 설정
 
 const $pageContainer = document.getElementById('pageContainer');
 
@@ -23,7 +23,7 @@ export const makePagination = props => {
     // e.g. nowPage가 3일 때  => [1, 2, "3", 4, 5, 6, 7, 8, 9, 10]
     // e.g. nowPage가 5일 때  => [1, 2, 3, 4, "5", 6, 7, 8, 9, 10]
     // e.g. nowPage가 6일 때    => [2, 3, 4, 5, "6", 7, 8, 9, 10, 11]
-    const pageNumber = `${i + (nowPage < 5 ? 0 : nowPage - 5)}`;
+    const pageNumber = `${i + (nowPage < 5 ? 0 : nowPage - SHOWING_PAGE_COUNT / 2)}`;
     li.innerText = pageNumber;
 
     // 현재 페이지 번호에 클래스 추가
@@ -38,33 +38,28 @@ export const makePagination = props => {
 
   if (nowPage < 5) {
     // 다음 버튼 추가
-    const next = document.createElement('li');
-    next.innerText = ' >> ';
-    next.addEventListener('click', () => {
-      movePage(Math.min(nowPage + 5, totalPages));
-    });
-    ul.append(next);
+    makeNextPrevButton(false, ul, ' >> ', nowPage, totalPages);
   } else {
     // 이전 버튼 추가
-    const prev = document.createElement('li');
-    prev.innerText = ' << ';
-    prev.addEventListener('click', () => {
-      movePage(Math.max(nowPage - 5, 1));
-    });
-    ul.prepend(prev);
+    makeNextPrevButton(true, ul, ' << ', nowPage);
 
     // 끝 번호로 가까워지면 다음 버튼 생성할 필요 없음
-    if (nowPage < totalPages - 5) {
-      const next = document.createElement('li');
-      next.innerText = ' >> ';
-      next.addEventListener('click', () => {
-        movePage(Math.min(nowPage + 5, totalPages));
-      });
-      ul.append(next);
+    if (nowPage < totalPages - SHOWING_PAGE_COUNT / 2) {
+      makeNextPrevButton(false, ul, ' >> ', nowPage, totalPages);
     }
   }
 
   $pageContainer.append(ul);
+};
+
+const makeNextPrevButton = (isPrev, ul, text, nowPage, totalPages) => {
+  const button = document.createElement('li');
+  button.innerText = text;
+  button.addEventListener('click', () => {
+    if (isPrev) movePage(Math.max(nowPage - SHOWING_PAGE_COUNT / 2, 1));
+    else movePage(Math.min(nowPage + SHOWING_PAGE_COUNT / 2, totalPages));
+  });
+  isPrev ? ul.prepend(button) : ul.append(button);
 };
 
 const checkIsNowPage = (pageNumber, index, li) => {
@@ -73,6 +68,8 @@ const checkIsNowPage = (pageNumber, index, li) => {
   }
 };
 
+// 페이지 이동
+// movieContainer를 empty시킨 후 => fetchMovies로 다른 페이지의 영화 정보 불러옴
 const movePage = pageNumber => {
   moviesContainer.innerHTML = '';
   fetchMovies(pageNumber);
