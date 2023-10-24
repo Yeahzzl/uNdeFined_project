@@ -62,7 +62,7 @@ header {
     grid-template-rows: repeat(4, 1fr);
     grid-template-columns: repeat(5, 1fr);
     column-gap: 10px;
-    row-gap: 150px;
+    row-gap: 30px;
     justify-content: space-between;
     margin: 20px auto 0 auto;
 }
@@ -82,7 +82,7 @@ header {
     /* background-color: blueviolet; */
     position: relative;
     width: 220px;
-    height: 360px;
+    height: auto;
   }
 
 .poster_img {
