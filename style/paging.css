@@ -1,5 +1,35 @@
+:root {
+    --button-size: 30px;
+}
+
 #pageContainer {
+    margin-top: 40px;
+    border-top: 1px solid #adb5bd;
+    display: flex;
+    justify-content: center;
     width: 100vw;
-    height: 100px;
-    background: red;
+}
+
+
+#pageContainer ul {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    padding-left: 0;
+}
+
+#pageContainer li {
+    margin: 0 15px 0 15px;
+    width: var(--button-size);
+    height: var(--button-size);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.now_page {
+    background: #69db7c;
+    color: white;
+    border-radius: var(--button-size);
 }

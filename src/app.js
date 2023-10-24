@@ -1,3 +1,5 @@
+import {makePagination} from './paging.js';
+
 const options = {
   method: 'GET',
   headers: {
@@ -6,23 +8,30 @@ const options = {
       'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiYjg5NzEzNmQwZGFmYWRjZGI0MDJhYjcyODBiNWJiZSIsInN1YiI6IjY1MmYyNmQwZWE4NGM3MDEwYzFkYzNhMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.LHU-uAz75iuYfxcauUmesT53m3QG4ZKs9xBdSmPsRPs',
   },
 };
-const movieUrl =
-  'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=1&sort_by=popularity.desc';
+
 const baseUrl = 'https://image.tmdb.org/t/p/';
 
 //Rated movie
 let movies = null;
-const moviesContainer = document.getElementById('movieList');
+export const moviesContainer = document.getElementById('movieList');
 
-fetch(movieUrl, options)
-  .then(res => res.json())
-  .then(data => {
-    movies = data['results'];
-    //함수를 밖에 선언해보고 시
-    displayMovies();
-    alertId();
-  })
-  .catch(err => console.error(err));
+export const fetchMovies = (page) => {
+  // page를 외부에서 받아서 링크 string을 만든다.
+  const movieUrl =
+    `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=${page}&sort_by=popularity.desc`;
+  fetch(movieUrl, options)
+    .then(res => res.json())
+    .then(data => {
+      movies = data['results'];
+      //함수를 밖에 선언해보고 시
+      displayMovies();
+      alertId();
+      makePagination({page: data.page, totalPages: data.total_pages});
+    })
+    .catch(err => console.error(err));
+}
+
+fetchMovies(1);
 
 const displayMovies = () => {
   movies.forEach(movie => {
