@@ -65,6 +65,7 @@ header {
     row-gap: 30px;
     justify-content: space-between;
     margin: 20px auto 0 auto;
+    min-height: 100vh;
 }
 
 .item_movie {
@@ -145,3 +146,37 @@ strong {
     overflow-y: scroll;
 }
 
+@keyframes spinner {
+    0% {
+        transform: translate3d(-50%, -50%, 0) rotate(0deg);
+    }
+    100% {
+        transform: translate3d(-50%, -50%, 0) rotate(360deg);
+    }
+}
+
+.spin-bg::before {
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255,255,0.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: "";
+}
+
+.spin::before {
+    animation: 1.5s linear infinite spinner;
+    animation-play-state: inherit;
+    border: solid 5px #cfd0d1;
+    border-bottom-color: #1c87c9;
+    border-radius: 50%;
+    content: "";
+    height: 60px;
+    width: 60px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    will-change: transform;
+}

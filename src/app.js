@@ -1,4 +1,5 @@
 import {makePagination} from './paging.js';
+import {hideLoading, showLoading} from './helper.js';
 
 const options = {
   method: 'GET',
@@ -16,6 +17,7 @@ let movies = null;
 export const moviesContainer = document.getElementById('movieList');
 
 export const fetchMovies = (page) => {
+  showLoading(moviesContainer);
   // page를 외부에서 받아서 링크 string을 만든다.
   const movieUrl =
     `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=${page}&sort_by=popularity.desc`;
@@ -27,6 +29,7 @@ export const fetchMovies = (page) => {
       displayMovies();
       alertId();
       makePagination({page: data.page, totalPages: data.total_pages});
+      hideLoading(moviesContainer);
     })
     .catch(err => console.error(err));
 }
