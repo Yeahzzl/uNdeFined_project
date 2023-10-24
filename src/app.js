@@ -61,6 +61,7 @@ const displayMovies = () => {
 };
 
 //카드 클릭시 id 얼럿띄우기
+
 let alertId = function () {
   movies.forEach(movie => {
     let id = movie.id;
@@ -68,7 +69,7 @@ let alertId = function () {
     // document.querySelector로 처음에 하다가 id 값을 넣어야 하구나 알게됨 ->
     //근데 카드를 넣을때 마다 모든 카드의 아이디가 다 출력되어버림... 각각의 카드 아이디가 받아와져야 되는데 그걸 못 함.
     let eachMovie = document.getElementById(id);
-    eachMovie.addEventListener('click', function () {
+    eachMovie.parentElement.parentElement.addEventListener('click', function () {
       console.log(id);
       alert(id);
     });
