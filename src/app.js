@@ -96,7 +96,7 @@ const searchMovies = () => {
           moviesContainer.removeChild(moviesContainer.firstChild);
         }
         // while 루프: 특적 조건이 참일 때 실행하기 -> moviesContainer안에 자식 요소가 존재하면 실행.
-        // removeChid 메서드->  while 루프를 돌면서 firstChid를 지움 -> 모든 자식 요소 지우기
+        // removeChid 메서드->  while 루프를 돌면서 firstChild를 지움 -> 모든 자식 요소 지우기
         // 자식 요소가 다 지워지면 멈춤.
       }
       //1. 빈 검색창 검색시 페이지 reload
