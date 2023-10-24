@@ -4,13 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="../style/style.css" rel="stylesheet" type="text/css" />
-    <script type="module" src="../src/app.js"></script>
     <!-- defer:지연되다 자바스크립트 태그를 지연실행하겠다! 파싱을 끝까지 이어갈 수 있음 -->
     <!-- 현재는 type="module" 로 사용되고있음 -->
     <title>Document</title>
   </head>
+    <link href="style/style.css" rel="stylesheet" type="text/css" />
+    <link href="style/paging.css" rel="stylesheet" type="text/css" />
     <title>Main</title>
-</head>
+    <script type="module" src="src/app.js"></script>
+    <script type="module" src="src/paging.js"></script>
+  </head>
 
   <body>
     <header>
@@ -34,6 +37,9 @@
                     <span class="cont_text">개봉 ${releaseDate}</span>
             </div>
         </div> -->
+    </div>
+    <div id="pageContainer">
+      <ul id="pageList"></ul>
     </div>
   </body>
 </html>
