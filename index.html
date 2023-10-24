@@ -1,24 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="../style/style.css" rel="stylesheet" type="text/css" />
     <title>Main</title>
-</head>
+    <script type="module" src="../src/app.js"></script>
+  </head>
 
-<body>
+  <body>
     <header>
-        <div class="search_area">
-            <input id="search_input" placeholder="영화 제목을 입력해주세요!" type="text" autofocus>
-            <!-- 오토포커스!! 세상 간단 -->
-            <button id="search_button">search</button>
-        </div>
-
+      <div class="search_area">
+        <input id="search_input" placeholder="영화 제목을 입력해주세요!" type="text" autofocus />
+        <!-- 오토포커스!! 세상 간단 -->
+        <button id="search_button">search</button>
+      </div>
     </header>
     <div id="movieList">
-        <!-- <div class="img_container">
+      <!-- <div class="img_container">
             <div class="movie_poster">
                 <img id="${id}" class="poster_img"
                     src="${getImageUrl(posterPath)}"
@@ -32,7 +31,5 @@
             </div>
         </div> -->
     </div>
-</body>
-<script type="module" src="../src/app.js"></script>
-
+  </body>
 </html>
