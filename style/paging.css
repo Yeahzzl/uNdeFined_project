@@ -29,6 +29,10 @@
     cursor: pointer;
 }
 
+#pageContainer li:hover:not(.now_page) {
+    border-bottom: 1px solid black;
+}
+
 .now_page {
     background: #495057;
     color: white;
