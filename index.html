@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="../style/style.css" rel="stylesheet" type="text/css" />
+    <script type="module" src="../src/app.js"></script>
+    <!-- defer:지연되다 자바스크립트 태그를 지연실행하겠다! 파싱을 끝까지 이어갈 수 있음 -->
+    <!-- 현재는 type="module" 로 사용되고있음 -->
     <title>Document</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <header>
-        <div class="search_area">
-            <input id="search_input" placeholder="영화 제목을 입력해주세요!" type="text" autofocus>
-            <!-- 오토포커스!! 세상 간단 -->
-            <button id="search_button">search</button>
-        </div>
-
+      <div class="search_area">
+        <input id="search_input" placeholder="영화 제목을 입력해주세요!" type="text" autofocus />
+        <!-- 오토포커스!! 세상 간단 -->
+        <button id="search_button">search</button>
+      </div>
     </header>
     <div id="movieList">
-        <!-- <div class="img_container">
+      <!-- <div class="img_container">
             <div class="movie_poster">
                 <img id="${id}" class="poster_img"
                     src="${getImageUrl(posterPath)}"
@@ -32,7 +33,5 @@
             </div>
         </div> -->
     </div>
-</body>
-<script src="../src/app.js"></script>
-
+  </body>
 </html>
