@@ -16,11 +16,10 @@ const baseUrl = 'https://image.tmdb.org/t/p/';
 let movies = null;
 export const moviesContainer = document.getElementById('movieList');
 
-export const fetchMovies = (page) => {
+export const fetchMovies = page => {
   showLoading(moviesContainer);
   // page를 외부에서 받아서 링크 string을 만든다.
-  const movieUrl =
-    `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=${page}&sort_by=popularity.desc`;
+  const movieUrl = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=${page}&sort_by=popularity.desc`;
   fetch(movieUrl, options)
     .then(res => res.json())
     .then(data => {
@@ -32,7 +31,7 @@ export const fetchMovies = (page) => {
       hideLoading(moviesContainer);
     })
     .catch(err => console.error(err));
-}
+};
 
 fetchMovies(1);
 
@@ -53,17 +52,17 @@ const displayMovies = () => {
     };
     //받아온 영화 데이터 카드 만들어서 html에 붙이기
     const tempHtml = `
-                            <div class="img_container">
-                                <div class="movie_poster">
-                                    <img id="${id}" class="poster_img"
-                                        src="${getImageUrl(posterPath)}"
-                                        alt="${title}">
+                            <div class='img_container'>
+                                <div class='movie_poster'>
+                                    <img id='${id}' class='poster_img'
+                                        src='${getImageUrl(posterPath)}'
+                                        alt='${title}'>
                                 </div>
-                                <span class="overview">${overview}</span>
-                                <div class="movie_cont">
+                                <span class='overview'>${overview}</span>
+                                <div class='movie_cont'>
                                     <strong>${title}</strong>
-                                        <span class="cont_text">평점 ${voteAverage}</span>
-                                        <span class="cont_text">개봉 ${releaseDate}</span>
+                                        <span class='cont_text'>평점 ${voteAverage}</span>
+                                        <span class='cont_text'>개봉 ${releaseDate}</span>
                                 </div>
                             </div>
                             `;
@@ -104,6 +103,7 @@ const searchMovies = () => {
       //받아온 영화 데이터 카드 만들어서 html에 붙이기
       //1. 그 전에 원래 페이지 내용을 지운다.
       clearPage();
+
       function clearPage() {
         while (moviesContainer.firstChild) {
           moviesContainer.removeChild(moviesContainer.firstChild);
@@ -112,6 +112,7 @@ const searchMovies = () => {
         // removeChid 메서드->  while 루프를 돌면서 firstChid를 지움 -> 모든 자식 요소 지우기
         // 자식 요소가 다 지워지면 멈춤.
       }
+
       //1. 빈 검색창 검색시 페이지 reload
       //2.  검색결과 있으면 카드 붙이기
       //3. 없으면 검색 결과가 없다고 표시하기
@@ -131,17 +132,17 @@ const searchMovies = () => {
           };
 
           const tempHtml = `
-                                    <div class="img_container">
-                                        <div class="movie_poster">
-                                            <img id="${id}" class="poster_img"
-                                                src="${getImageUrl(posterPath)}"
-                                                alt="${title}">
+                                    <div class='img_container'>
+                                        <div class='movie_poster'>
+                                            <img id='${id}' class='poster_img'
+                                                src='${getImageUrl(posterPath)}'
+                                                alt='${title}'>
                                         </div>
-                                        <span class="overview">${overview}</span>       
-                                        <div class="movie_cont">
+                                        <span class='overview'>${overview}</span>       
+                                        <div class='movie_cont'>
                                             <strong>${title}</strong>
-                                            <span class="cont_text">평점: ${voteAverage}</span>
-                                            <span class="cont_text">개봉일: ${releaseDate}</span>
+                                            <span class='cont_text'>평점: ${voteAverage}</span>
+                                            <span class='cont_text'>개봉일: ${releaseDate}</span>
 
                                         </div>
                                     </div>
