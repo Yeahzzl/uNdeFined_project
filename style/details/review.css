@@ -65,8 +65,7 @@
   font-size: 16px;
 }
 
-.cboxComment {
-    
+.cboxComment { /*작성 form이랑 위치 안맞음*/
   position: relative;
   list-style: none;
   /* background-color: bisque; */
