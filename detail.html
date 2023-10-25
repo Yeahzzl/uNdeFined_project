@@ -1,14 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Detail</title>
-</head>
+    <script type="module" src="src/details/detail.js"></script>
+  </head>
 
-<body>
-
-</body>
-
+  <body>
+    <div id="movieDetails" class="detailPage"></div>
+  </body>
+  <script></script>
 </html>
+
+<!-- 
+    내가 맡은 것은?
+    영화 카드를 누르면 디테일 페이지가 떠야함.
+    그 디테일 페이지에는 영화의 상세 정보(Details Fetch)가 들어가야함.
+    그리고 리뷰 작성을 위한 공간을 마련해야함.
+    아니, 그냥 클릭을 했을 때, 그려져있는 html을 지우고 디테일 패치를 불러오면 되는 게 아닐까? 
+    지금 방식으로 하려면 detail html을 연동? 시켜야 하는 과정이 늘어나긴 하겠지..?
+    
+    내가 원하는 순서.
+    1. 현재 웹페이지에 그려진 영화 카드리스트에서, 하나의 영화 카드를 클릭하면, 이벤트가 발생.
+    2. 클릭 이벤트로 인해, 디테일 페이지로 이동.
+    3. 디테일 페이지는 TMDB에서 받아온 Details Fetch가 html을 그릴 것임.
+    
+    내가 해야할 것?
+    1. 클릭 이벤트 넣기.
+    2. Details Fetch 
+    3. 
+ -->

@@ -81,8 +81,8 @@ let alertId = function () {
     //근데 카드를 넣을때 마다 모든 카드의 아이디가 다 출력되어버림... 각각의 카드 아이디가 받아와져야 되는데 그걸 못 함.
     let eachMovie = document.getElementById(id);
     eachMovie.parentElement.parentElement.addEventListener('click', function () {
-      console.log(id);
-      alert(id);
+      window.location.href = `detail.html?id=${id}`;
+      console.log(movieList);
     });
   });
 };
