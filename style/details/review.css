@@ -1,0 +1,61 @@
+
+#commentForm {
+  /* background-color: red; */
+  width: 700px;
+  height: 250px;
+  margin: 10px auto 0 auto;  
+
+  /*입력 필드 사이즈 고정하는 법..?*/
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgb(178, 177, 177);
+  border-radius: 5px;
+}
+#commentForm legend {
+  /* background-color: green; */
+  width: 650px; /*commentForm이랑 맞추려면 어떻게 해야하지*/
+  height: 45px;
+}
+#nameArea {
+  border-bottom: 0.5px solid rgb(193, 193, 193);
+}
+#btnArea {
+  margin-top: 20px;
+  border-top: 0.5px solid rgb(193, 193, 193);
+}
+#writer {
+  width: 120px;
+  height: 30px;
+  margin: 5px 545px 5px 0;
+  border: 0.5px solid #111;
+}
+#writer::placeholder {
+    color: rgb(193, 193, 193);
+}
+#writer:focus {
+    outline: none;
+}
+
+#comment {
+  /* background-color: aqua; */
+  width: 650px;
+  height: 120px;
+  border: none;
+  resize: none;
+}
+#comment:focus {
+    outline: none;
+}
+#saveBtn {
+  background-color: rgb(58, 84, 171);/*버튼 색 바꾸기*/
+  color: #fff;
+  width: 100px;
+  height: 35px;
+  margin: 5px 0 0 550px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+}
