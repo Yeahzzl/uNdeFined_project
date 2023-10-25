@@ -8,16 +8,30 @@
   </head>
 
   <body>
-    <div id="commentBox">
-      <form id="commentForm">
-        <legend id="nameArea">
-          <input id="writer" type="text" placeholder="작성자" />
-        </legend>
-        <textarea id="comment" cols="30" rows="10"></textarea>
-        <legend id="btnArea">
-          <button id="saveBtn" type="submit">저장</button>
-        </legend>
-      </form>
+    <!-- 코멘트작성 필드 -->
+    <form id="commentForm">
+      <div class="inputArea nameArea">
+        <input id="writer" type="text" placeholder=" 작성자" />
+        <div>나중에 시간 되면 여따가 별</div>
+      </div>
+      <textarea id="comment" cols="30" rows="10"></textarea>
+      <div class="inputArea btnArea">
+        <button id="saveBtn" type="button">저장</button>
+      </div>
+    </form>
+    <!-- 작성된 코멘트카드 -->
+    <div>
+      <ul>
+        <li class="cboxComment">
+          <div class="editComment">
+            <span>수정</span>
+            <span>삭제</span>
+          </div>
+          <p class="comInfo">작성자</p>
+          <p>코멘트</p>
+          <p class="comInfo">작성시간</p>
+        </li>
+      </ul>
     </div>
   </body>
 </html>

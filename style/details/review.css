@@ -1,42 +1,46 @@
-
 #commentForm {
   /* background-color: red; */
   width: 700px;
   height: 250px;
-  margin: 10px auto 0 auto;  
-
+  margin: 0 auto 0 auto;
   /*입력 필드 사이즈 고정하는 법..?*/
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
-  border: 1px solid rgb(178, 177, 177);
-  border-radius: 5px;
+  border: 1px solid gainsboro;
+  border-radius: 3px;
 }
-#commentForm legend {
+.inputArea {
   /* background-color: green; */
-  width: 650px; /*commentForm이랑 맞추려면 어떻게 해야하지*/
+  width: 650px;
   height: 45px;
+  margin: 10px 0 10px 0;
 }
-#nameArea {
-  border-bottom: 0.5px solid rgb(193, 193, 193);
+.nameArea {
+  width: 650px;
+  border-bottom: 0.5px solid gainsboro;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
-#btnArea {
-  margin-top: 20px;
-  border-top: 0.5px solid rgb(193, 193, 193);
+
+.btnArea {
+  margin: 10px 0 10px 0;
+  border-top: 0.5px solid gainsboro;
 }
 #writer {
   width: 120px;
   height: 30px;
-  margin: 5px 545px 5px 0;
+  /* margin: 0 545px 5px 0; */
   border: 0.5px solid #111;
 }
 #writer::placeholder {
-    color: rgb(193, 193, 193);
+  color: rgb(193, 193, 193);
 }
 #writer:focus {
-    outline: none;
+  outline: none;
 }
 
 #comment {
@@ -45,17 +49,52 @@
   height: 120px;
   border: none;
   resize: none;
+  overflow: hidden;
 }
 #comment:focus {
-    outline: none;
+  outline: none;
 }
 #saveBtn {
-  background-color: rgb(58, 84, 171);/*버튼 색 바꾸기*/
+  background-color: rgb(58, 84, 171); /*버튼 색 바꾸기*/
   color: #fff;
   width: 100px;
   height: 35px;
-  margin: 5px 0 0 550px;
+  margin: 10px 0 0 550px;
   border: none;
   border-radius: 5px;
   font-size: 16px;
+}
+
+.cboxComment {
+    
+  position: relative;
+  list-style: none;
+  /* background-color: bisque; */
+  width: 700px;
+  margin: 0 auto 0 auto;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid gainsboro;
+  border-bottom: 1px solid gainsboro;
+  border-collapse: collapse; /*겹침 해결은 어떻게 하지?*/
+}
+.editComment {
+  /* background-color: aqua; */
+  position: absolute;
+  margin: 10px 0 0 620px;
+  border-right: 1px solid gainsboro;
+}
+.editComment span {
+  font-size: 13px;
+  width: 40px;
+  height: 20px;
+}
+.editComment span:first-child {
+  padding-right: 5px;
+  border-right: 1px solid gainsboro;
+}
+
+.comInfo {
+    font-size: 14px;
+    font-weight: 600;
 }
