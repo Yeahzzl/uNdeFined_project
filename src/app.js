@@ -189,7 +189,11 @@ document.querySelector('.scoreAlignment').addEventListener('click', () => {
 //이름순 : 한글->영어->숫자->그 외문자... 순서설정
 document.querySelector('.nameAlignment').addEventListener('click', () => {
   movies = movies.sort(function (a, b) {
-    return a.title < b.title ? -1 : a.title > b.title ? 1 : 0; //숫자->영어->한글 순으로 정렬됨...
+    let titleACode = a.title[0].charCodeAt(0);
+    let titleBCode = b.title[0].charCodeAt(0);
+    if (titleACode <= 12593) titleACode += 999999;
+    if (titleBCode <= 12593) titleBCode += 999999;
+    return titleACode < titleBCode ? -1 : titleACode > titleBCode ? 1 : 0; //숫자->영어->한글 순으로 정렬됨...
   });
   moviesContainer.innerHTML = '';
   displayMovies();
