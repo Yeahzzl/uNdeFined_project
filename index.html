@@ -3,6 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="../style/style.css" rel="stylesheet" type="text/css" />
+    <!-- defer:지연되다 자바스크립트 태그를 지연실행하겠다! 파싱을 끝까지 이어갈 수 있음 -->
+    <!-- 현재는 type="module" 로 사용되고있음 -->
+    <title>uNdeFined</title>
+  </head>
     <link href="style/style.css" rel="stylesheet" type="text/css" />
     <link href="style/paging.css" rel="stylesheet" type="text/css" />
     <title>Main</title>
@@ -12,12 +17,19 @@
 
   <body>
     <header>
+      <div>
+        <a href="/"><img src="./로고.png" alt="Home" class="logo"></div></a>
       <div class="search_area">
         <input id="search_input" placeholder="영화 제목을 입력해주세요!" type="text" autofocus />
         <!-- 오토포커스!! 세상 간단 -->
         <button id="search_button">search</button>
       </div>
     </header>
+    <div id="alignment">
+      <a href="#" class="nameAlignment">이름순</a>
+      <a href="#" class="scoreAlignment">별점순</a>
+      <a href="#" class="dateAlignment">최신순</a>
+    </div>
     <div id="movieList">
       <!-- <div class="img_container">
             <div class="movie_poster">
