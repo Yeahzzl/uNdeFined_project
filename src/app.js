@@ -108,7 +108,7 @@ const searchMovies = () => {
         while (moviesContainer.firstChild) {
           moviesContainer.removeChild(moviesContainer.firstChild);
         }
-        // while 루프: 특적 조건이 참일 때 실행하기 -> moviesContainer안에 자식 요소가 존재하면 실행.
+        // while 루프: 특정 조건이 참일 때 실행하기 -> moviesContainer안에 자식 요소가 존재하면 실행.
         // removeChid 메서드->  while 루프를 돌면서 firstChild를 지움 -> 모든 자식 요소 지우기
         // 자식 요소가 다 지워지면 멈춤.
       }
@@ -167,4 +167,30 @@ searchInput.addEventListener('keyup', function (event) {
   if (event.keyCode === 13) {
     document.getElementById('search_button').click();
   }
+});
+
+//이름순, 별점순 정렬
+//1. 이름순, 별점순 클릭시 클릭이벤트 발생
+//2. 클릭이 발생하면 기존에 있는 데이터를 가져오기
+//3. 가져온 후 이름순, 별점순으로 순서를 정렬
+//4. 정렬한것을 화면에 그려주기
+//추가)홈화면 아이콘 누르면 다시 처음페이지, 순서로 돌아갈수있게..!
+
+// 별점순 : 높은순->낮은순 (별점이 동일할경우? 이름순과 동일하게)
+// console.log(movies);
+document.querySelector('.scoreAlignment').addEventListener('click', () => {
+  movies = movies.sort(function (a, b) {
+    return b.vote_average - a.vote_average;
+  }); //1-3번
+  moviesContainer.innerHTML = ''; //기존 카드 지워주기
+  displayMovies(); //4번
+});
+
+//이름순 : 한글->영어->숫자->그 외문자... 순서설정
+document.querySelector('.nameAlignment').addEventListener('click', () => {
+  movies = movies.sort(function (a, b) {
+    return a.title < b.title ? -1 : a.title > b.title ? 1 : 0; //숫자->영어->한글 순으로 정렬됨...
+  });
+  moviesContainer.innerHTML = '';
+  displayMovies();
 });
