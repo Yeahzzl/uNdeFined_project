@@ -1,0 +1,109 @@
+#commentForm {
+  /* background-color: red; */
+  width: 700px;
+  height: 250px;
+  margin: 0 auto 0 auto;
+  /*입력 필드 사이즈 고정하는 법..?*/
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid gainsboro;
+  border-radius: 3px;
+}
+.inputArea {
+  /* background-color: green; */
+  width: 650px;
+  height: 45px;
+  margin: 10px 0 10px 0;
+}
+.nameArea {
+  width: 650px;
+  border-bottom: 0.5px solid gainsboro;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btnArea {
+  margin: 10px 0 10px 0;
+  border-top: 0.5px solid gainsboro;
+}
+#writer {
+  width: 120px;
+  height: 30px;
+  /* margin: 0 545px 5px 0; */
+  border: 0.5px solid #111;
+}
+#writer::placeholder {
+  color: rgb(193, 193, 193);
+}
+#writer:focus {
+  outline: none;
+}
+
+#comment {
+  /* background-color: aqua; */
+  width: 650px;
+  height: 120px;
+  border: none;
+  resize: none;
+  overflow: hidden;
+}
+#comment:focus {
+  outline: none;
+}
+#saveBtn {
+  background-color: rgb(58, 84, 171); /*버튼 색 바꾸기*/
+  color: #fff;
+  width: 100px;
+  height: 35px;
+  margin: 10px 0 0 550px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+}
+#saveBtn:hover {
+  background-color: rgb(35, 50, 101);
+}
+
+.comCard { /*작성 form이랑 위치 안맞음*/
+  position: relative;
+  list-style: none;
+  /* background-color: bisque; */
+  width: 700px;
+  margin: 0 auto 0 auto;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid gainsboro;
+  border-bottom: 1px solid gainsboro;
+  border-collapse: collapse; /*겹침 해결은 어떻게 하지?*/
+}
+.editBtns {
+  /* background-color: aqua; */
+  position: absolute;
+  margin: 10px 0 0 620px;
+  border-right: 1px solid gainsboro;
+  
+}
+
+.editBtns span {
+  font-size: 13px;
+  width: 40px;
+  height: 20px;
+}
+
+.editBtns span:hover {
+  color: goldenrod
+}
+
+#comEdit {
+  padding-right: 5px;
+  border-right: 1px solid gainsboro;
+}
+
+.comInfo {
+    font-size: 14px;
+    font-weight: 600;
+}
