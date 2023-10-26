@@ -14,8 +14,10 @@
 #pageContainer ul {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     list-style: none;
     padding-left: 0;
+    height: 80px;
 }
 
 #pageContainer li {
@@ -37,4 +39,8 @@
     background: #495057;
     color: white;
     border-radius: var(--button-size);
+}
+
+.start_end_button {
+    width: auto !important;
 }

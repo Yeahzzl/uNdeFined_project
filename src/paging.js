@@ -5,7 +5,9 @@ const SHOWING_PAGE_COUNT = 10; // 보여지는 카운트 개수 설정
 const $pageContainer = document.getElementById('pageContainer');
 
 export const makePagination = props => {
-  const {page: nowPage, totalPages} = props;
+  const {page: nowPage} = props;
+
+  const totalPages = 500; // 고정!! 500 넘어가면 TMDB에서 조회안됨...
 
   // page 공간 초기화
   $pageContainer.innerHTML = '';
@@ -24,11 +26,13 @@ export const makePagination = props => {
     // e.g. nowPage가 5일 때  => [1, 2, 3, 4, "5", 6, 7, 8, 9, 10]
     // e.g. nowPage가 6일 때    => [2, 3, 4, 5, "6", 7, 8, 9, 10, 11]
     const pageNumber = `${i + (nowPage < 5 ? 0 : nowPage - SHOWING_PAGE_COUNT / 2)}`;
+    if (pageNumber > totalPages) continue;
     li.innerText = pageNumber;
 
     // 현재 페이지 번호에 클래스 추가
     checkIsNowPage(nowPage, +pageNumber, li);
 
+    // 버튼에 페이지 이동 이벤트 추가
     li.addEventListener('click', () => {
       movePage(pageNumber);
     });
@@ -38,29 +42,46 @@ export const makePagination = props => {
 
   if (nowPage < 5) {
     // 다음 버튼 추가
-    makeNextPrevButton(false, ul, ' >> ', nowPage, totalPages);
+    makeNextPrevButton(false, ul, ' >> ',totalPages, nowPage);
+    makeNextPrevButton(false, ul, "끝 페이지로", totalPages);
   } else {
     // 이전 버튼 추가
     makeNextPrevButton(true, ul, ' << ', nowPage);
+    makeNextPrevButton(true, ul,"첫 페이지로", totalPages);
 
     // 끝 번호로 가까워지면 다음 버튼 생성할 필요 없음
     if (nowPage < totalPages - SHOWING_PAGE_COUNT / 2) {
-      makeNextPrevButton(false, ul, ' >> ', nowPage, totalPages);
+      makeNextPrevButton(false, ul, ' >> ', totalPages, nowPage);
+      makeNextPrevButton(false, ul, "끝 페이지로", totalPages);
     }
   }
 
   $pageContainer.append(ul);
 };
 
-const makeNextPrevButton = (isPrev, ul, text, nowPage, totalPages) => {
-  const button = document.createElement('li');
-  button.innerText = text;
-  button.addEventListener('click', () => {
-    if (isPrev) movePage(Math.max(nowPage - SHOWING_PAGE_COUNT / 2, 1));
-    else movePage(Math.min(nowPage + SHOWING_PAGE_COUNT / 2, totalPages));
-  });
-  isPrev ? ul.prepend(button) : ul.append(button);
-};
+const makeNextPrevButton = (isPrev, ul, text, totalPages, nowPage) => {
+  const li = document.createElement('li');
+  li.innerText = text;
+
+  if (nowPage) {
+    // <<, >> 버튼
+    // 버튼 클릭시 페이지 이동 이벤트 추가
+    li.addEventListener('click', () => {
+      if (isPrev) movePage(Math.max(nowPage - SHOWING_PAGE_COUNT / 2, 1));
+      else movePage(Math.min(nowPage + SHOWING_PAGE_COUNT / 2, totalPages));
+    });
+  } else {
+    // 첫 페이지로, 끝 페이지로 버튼
+    li.classList.add("start_end_button")
+    li.addEventListener("click", () => {
+      if (isPrev) movePage(1);
+      else movePage(totalPages);
+    })
+  }
+
+  // << 버튼이면 앞에, >> 버튼이면 뒤에
+  isPrev ? ul.prepend(li) : ul.append(li);
+}
 
 const checkIsNowPage = (pageNumber, index, li) => {
   if (pageNumber === index) {
