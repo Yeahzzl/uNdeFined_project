@@ -4,6 +4,12 @@ body {
   color: rgb(57, 57, 58);
 }
 
+.logo {
+  width: 50px;
+  margin-top: 80px;
+  margin-right: 30px;
+  border-radius: 100%;
+}
 header {
   /* background-color: coral; */
   width: 100%;
@@ -22,7 +28,7 @@ header {
   width: 500px;
   height: 50px;
   padding: 0 15px;
-  margin-top: 50px;
+  margin-top: 80px;
   border: 1px solid rgb(56, 55, 55);
   border-radius: 30px;
 }
@@ -74,8 +80,13 @@ header {
 
 .scoreAlignment {
   padding-left: 15px;
+  padding-right: 15px;
+  border-right: 1.5px solid #adb5bd;
 }
 
+.dateAlignment {
+  padding-left: 15px;
+}
 #alignment a:hover {
   color: rgb(255, 140, 0);
 }
