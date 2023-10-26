@@ -186,7 +186,7 @@ document.querySelector('.scoreAlignment').addEventListener('click', () => {
   displayMovies(); //4번
 });
 
-//이름순 : 한글->영어->숫자->그 외문자... 순서설정
+//이름순 : 한글->숫자->영어 그 외문자... 순서설정
 document.querySelector('.nameAlignment').addEventListener('click', () => {
   movies = movies.sort(function (a, b) {
     return a.title < b.title ? -1 : a.title > b.title ? 1 : 0; //숫자->영어->한글 순으로 정렬됨...
@@ -194,3 +194,5 @@ document.querySelector('.nameAlignment').addEventListener('click', () => {
   moviesContainer.innerHTML = '';
   displayMovies();
 });
+
+//localStorage를 이용해서 내가 '이름순' '별점순'을 클릭했다는 정보를 저장해두면 페이지를 넘어가도 그대로 정렬이 이루어 질 수 있음
