@@ -64,8 +64,11 @@
   border-radius: 5px;
   font-size: 16px;
 }
+#saveBtn:hover {
+  background-color: rgb(35, 50, 101);
+}
 
-.cboxComment { /*작성 form이랑 위치 안맞음*/
+.comCard { /*작성 form이랑 위치 안맞음*/
   position: relative;
   list-style: none;
   /* background-color: bisque; */
@@ -77,18 +80,25 @@
   border-bottom: 1px solid gainsboro;
   border-collapse: collapse; /*겹침 해결은 어떻게 하지?*/
 }
-.editComment {
+.editBtns {
   /* background-color: aqua; */
   position: absolute;
   margin: 10px 0 0 620px;
   border-right: 1px solid gainsboro;
+  
 }
-.editComment span {
+
+.editBtns span {
   font-size: 13px;
   width: 40px;
   height: 20px;
 }
-.editComment span:first-child {
+
+.editBtns span:hover {
+  color: goldenrod
+}
+
+#comEdit {
   padding-right: 5px;
   border-right: 1px solid gainsboro;
 }
