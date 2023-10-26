@@ -4,11 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Detail</title>
+    <link href="style/details/detail.css" rel="stylesheet" type="text/css" />
     <script type="module" src="src/details/detail.js"></script>
   </head>
 
   <body>
-    <div id="movieDetails" class="detailPage"></div>
+    <div class="backBtnContainer">
+      <button id="backBtn" class="backButton">Back</button>
+    </div>
+    <div class="pageContainer">
+      <div id="movieDetails" class="detailPage"></div>
+    </div>
+    <!-- <div>리뷰작성</div> -->
+    <!-- 디자인에 따라 toTop버튼이 필요없을 수도 있을 것 같습니다. -->
+    <div class="toTopBtnContainer">
+      <button id="toTopBtn" class="toTopButton">Top</button>
+    </div>
   </body>
   <script></script>
 </html>
@@ -27,7 +38,7 @@
     3. 디테일 페이지는 TMDB에서 받아온 Details Fetch가 html을 그릴 것임.
     
     내가 해야할 것?
-    1. 클릭 이벤트 넣기.
-    2. Details Fetch 
+    1. 클릭 이벤트 넣기. 
+    2. Details Fetch. 
     3. 
  -->

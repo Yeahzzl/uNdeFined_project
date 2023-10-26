@@ -1,1 +1,117 @@
-/* 디테일 페이지 css 해야함 */
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.detailPage {
+  /* background-color: green; */
+
+  width: 500px;
+
+  border-radius: 20px;
+
+  box-shadow: 0px 10px 20px 0px gray;
+}
+
+.posterImg {
+  max-width: 100%;
+
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.titleIcon {
+  max-width: 25px;
+  max-height: 25px;
+}
+
+.textContainer {
+  /* background-color: bisque; */
+
+  padding: 20px;
+}
+
+.detailTextContainer {
+  border-top: 2px dotted #777;
+}
+
+.backBtnContainer {
+  width: 100px;
+  height: 100px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 20px auto auto 20px;
+}
+
+.toTopBtnContainer {
+  width: 100px;
+  height: 100px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: auto 20px 20px auto;
+}
+
+#backBtn {
+  width: 80px;
+  height: 80px;
+
+  background-color: #d7d7d7aa;
+
+  border: 0px solid #d7d7d7aa;
+  border-radius: 50%;
+
+  box-shadow: 3px 3px 15px 0px lightslategray;
+
+  cursor: pointer;
+}
+
+#toTopBtn {
+  width: 80px;
+  height: 80px;
+
+  background-color: #d7d7d7aa;
+
+  border: 0px solid #d7d7d7aa;
+  border-radius: 50%;
+
+  box-shadow: 3px 3px 15px 0px lightslategray;
+
+  cursor: pointer;
+}
+
+#backBtn:hover {
+  background-color: black;
+  color: white;
+
+  border: 2px solid black;
+  border-radius: 50%;
+  transition: background-color 0.3s color 0.3s;
+}
+
+#toTopBtn:hover {
+  background-color: black;
+  color: white;
+
+  border: 2px solid black;
+  border-radius: 50%;
+  transition: background-color 0.3s color 0.3s;
+}

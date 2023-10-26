@@ -14,56 +14,73 @@ fetch(`https://api.themoviedb.org/3/movie/${movieId}?language=ko-KR`, options)
   .then(res => res.json())
   .then(detailData => {
     const movieDetails = detailData;
-    // Display the movie details on the page
     const movieDetailsContainer = document.getElementById('movieDetails');
-    // You can generate HTML to display the movie details here
-    // For example:
     movieDetailsContainer.innerHTML = `
-                  <div class="movie-card" id="${
-                    movieDetails.id
-                  }"><img class="posterImg" src="https://image.tmdb.org/t/p/w342/${
-      movieDetails.poster_path
-    }" alt="poster">
-                      <h2 class="movie-title">${movieDetails.title}</h2>
-                      <p class="overview">
-                      시놉시스 : ${movieDetails.overview}
+                  <div class="imgContainer" id="${movieDetails.id}"><img class="posterImg" 
+                  src="https://image.tmdb.org/t/p/w780/${movieDetails.backdrop_path}" alt="poster">
+                  </div>
+                      <div class="textContainer">
+                      <p class="titleIcon">
+                      🎥
                       </p>
+                      <h2 class="movie-title">${movieDetails.title}</h2>
+                      <p class="overview" style="color: #777">
+                      ${movieDetails.overview}
+                      </p>
+                      <h4>
+                      ⭐ :  ${Math.floor(movieDetails.vote_average)} 점
+                      </h4>
+                      <div class="detailTextContainer">
                       <h3>
-                      평점 : ${Math.floor(movieDetails.vote_average)}
+                      상세정보
                       </h3>
                       <p class="release-date">
-                      개봉일 : ${movieDetails.release_date}
+                      📅 _ ${movieDetails.release_date}
                       </p>
                       <p class="status">
-                      상태 : ${movieDetails.status}
+                      📢 _ ${movieDetails.status}
                       </p>
                       <p class="spoken-languages">
-                      언어 : ${movieDetails.spoken_languages.map(language => language.name).join(' & ')}
+                      🔊 _ ${movieDetails.original_language}
                       </p>
                       <p class="runtime">
-                      런타임 : ${movieDetails.runtime}분
+                      ⏱ _ ${movieDetails.runtime}분
                       </p>
                       <p class="genres">
-                      장르 : ${movieDetails.genres.map(genre => genre.name).join(' , ')}
-                      </p>
-                      <p>
-                      
+                      🎬 _ ${movieDetails.genres.map(genre => genre.name).join(' , ')}
                       </p>
                       <p class="production-countries">
-                      제작국가 : ${movieDetails.production_countries.map(countries => countries.name).join(' & ')}
+                      🌍 _ ${movieDetails.production_countries.map(countries => countries.name).join(' & ')}
                       </p>
                       <p class="production-companies">
-                      제작사 : ${movieDetails.production_companies.map(companies => companies.name).join(' , ')}
+                      🦺 _ ${movieDetails.production_companies.map(companies => companies.name).join(' , ')}
                       </p>
                       <p class="budget">
-                      제작예산 : ${movieDetails.budget} 달러
+                      💰 _ ${movieDetails.budget} 달러
                       </p>
                       <p class="revenue">
-                      흥행수입 : ${movieDetails.revenue} 달러
+                      🎉 _ ${movieDetails.revenue} 달러
                       </p>
+                      </div>
                       </div>`;
   })
   .catch(err => console.error(err));
+
+// backBtn 클릭 시, index.html 페이지로 돌아가게 하는 코드
+document.addEventListener('DOMContentLoaded', function () {
+  const backButton = document.getElementById('backBtn');
+
+  backButton.addEventListener('click', function () {
+    window.location.href = 'index.html';
+  });
+});
+// toTopBtn 클릭 시, 스크롤 즉시 위로 끌어올리는 코드
+document.getElementById('toTopBtn').addEventListener('click', function () {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
+});
 
 //   // details fetch 를 불러오기 위해서는 movie_id 가 있어야 올바르게 작동하는 것 같음.
 //   // 그럼 문제는 이게 작동하는지 어케 확인하냐...이건데.

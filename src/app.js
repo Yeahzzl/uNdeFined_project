@@ -73,6 +73,7 @@ const displayMovies = () => {
 
 //카드 클릭시 id 얼럿띄우기
 
+// 이제 alert 기능은 없어도 되는 것 같아, 그 기능을 detail.html로 넘어가게끔 코드를 변경 했습니다.
 let alertId = function () {
   movies.forEach(movie => {
     let id = movie.id;
@@ -86,6 +87,7 @@ let alertId = function () {
     });
   });
 };
+// detail.html 넘어가는 코드 끝.
 
 //영화 검색
 let allMovies = null;
