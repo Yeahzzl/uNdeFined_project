@@ -2,7 +2,7 @@
   /* background-color: red; */
   width: 700px;
   height: 250px;
-  margin: 0 auto 0 auto;
+  margin: 70px auto 0 auto;
   /*입력 필드 사이즈 고정하는 법..?*/
   display: flex;
   flex-direction: column;
@@ -84,7 +84,6 @@
   /* background-color: aqua; */
   position: absolute;
   margin: 10px 0 0 620px;
-  border-right: 1px solid gainsboro;
   
 }
 
@@ -98,9 +97,9 @@
   color: goldenrod
 }
 
-#comEdit {
+.comEdit {
   padding-right: 5px;
-  border-right: 1px solid gainsboro;
+  border-right: 1px solid grey;
 }
 
 .comInfo {
