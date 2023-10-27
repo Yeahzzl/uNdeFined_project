@@ -183,7 +183,7 @@ searchInput.addEventListener('keyup', function (event) {
 //추가) 홈화면 아이콘 누르면 다시 처음페이지, 순서로 돌아갈수있게..!
 
 //이름순 : 한글->숫자->영어 그 외문자... 순서설정
-document.querySelector('.nameAlignment').addEventListener('click', () => {
+document.querySelector('.nameAlignment').addEventListener('click', event => {
   const nameAlignment = movies.sort(function (a, b) {
     let titleACode = a.title[0].charCodeAt(0);
     let titleBCode = b.title[0].charCodeAt(0);
@@ -192,26 +192,43 @@ document.querySelector('.nameAlignment').addEventListener('click', () => {
     return titleACode < titleBCode ? -1 : titleACode > titleBCode ? 1 : 0;
   });
   moviesContainer.innerHTML = '';
+  changeColor(event.target);
   displayMovies();
 });
 
 // 별점순 : 높은순->낮은순 (별점이 동일할경우? 이름순과 동일하게)
 // console.log(movies);
-document.querySelector('.scoreAlignment').addEventListener('click', () => {
+document.querySelector('.scoreAlignment').addEventListener('click', event => {
   const scoreAlignment = movies.sort(function (a, b) {
     return b.vote_average - a.vote_average;
   }); //1-3번
   moviesContainer.innerHTML = ''; //기존 카드 지워주기
+  changeColor(event.target);
   displayMovies(); //4번
 });
 
 //추가) 날짜순 : 개봉일기준 최근부터
-document.querySelector('.dateAlignment').addEventListener('click', () => {
+document.querySelector('.dateAlignment').addEventListener('click', event => {
   const dateAlignment = movies.sort(function (a, b) {
     return new Date(b.release_date).getTime() - new Date(a.release_date).getTime();
   });
   moviesContainer.innerHTML = '';
+  changeColor(event.target);
   displayMovies();
 });
 
 //localStorage를 이용해서 내가 '이름순','별점순','최신순'을 클릭했다는 정보를 저장해두면 페이지를 넘어가도 그대로 정렬이 이루어 질 수 있음
+
+//localStorage를 이용해서 내가 '이름순','별점순','최신순'을 클릭했다는 정보를 저장해두면 페이지를 넘어가도 그대로 정렬이 이루어 질 수 있음*
+
+// 클릭한 요소를 매개변수로 받아옴
+
+const changeColor = target => {
+  // 나머지 버튼에서는 color-orange 클래스 전부 삭제*
+  document.querySelectorAll('.orderButton').forEach(elem => {
+    elem.classList.remove('color-orange');
+  });
+
+  // 클릭한 요소에 color-orange 클래스 추가*
+  target.classList.add('color-orange');
+};
