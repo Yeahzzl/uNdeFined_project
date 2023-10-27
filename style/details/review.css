@@ -11,12 +11,14 @@
   border: 1px solid gainsboro;
   border-radius: 3px;
 }
+
 .inputArea {
   /* background-color: green; */
   width: 650px;
   height: 45px;
   margin: 10px 0 10px 0;
 }
+
 .nameArea {
   width: 650px;
   border-bottom: 0.5px solid gainsboro;
@@ -30,6 +32,7 @@
   margin: 10px 0 10px 0;
   border-top: 0.5px solid gainsboro;
 }
+
 #writer {
   width: 120px;
   height: 30px;
@@ -37,9 +40,11 @@
   border: none;
   border-bottom: 0.5px solid #111;
 }
+
 #writer::placeholder {
   color: rgb(193, 193, 193);
 }
+
 #writer:focus {
   outline: none;
 }
@@ -52,11 +57,14 @@
   resize: none;
   overflow: hidden;
 }
+
 #comment:focus {
   outline: none;
 }
+
 #saveBtn {
-  background-color: rgb(58, 84, 171); /*버튼 색 바꾸기*/
+  background-color: rgb(58, 84, 171);
+  /*버튼 색 바꾸기*/
   color: #fff;
   width: 100px;
   height: 35px;
@@ -65,6 +73,7 @@
   border-radius: 5px;
   font-size: 16px;
 }
+
 #saveBtn:hover {
   background-color: rgb(35, 50, 101);
 }
@@ -72,6 +81,7 @@
   padding: 0;
 }
 .comCard {
+ 
   position: relative;
   list-style: none;
   /* background-color: bisque; */
@@ -84,6 +94,7 @@
   border-bottom: 1px solid gainsboro;
   /* 보더 겹침 해결 방법? */
 }
+
 .editBtns {
   /* background-color: aqua; */
   position: absolute;
