@@ -17,34 +17,23 @@
     <div class="pageContainer">
       <div id="movieDetails" class="detailPage"></div>
     </div>
-    <div class="commentContainer">
-      <form id="commentForm">
-        <div class="inputArea nameArea">
-          <input id="writer" type="text" placeholder=" 작성자" autofocus />
-          <div>나중에 시간 되면 여따가 별</div>
-        </div>
-        <textarea id="comment" cols="30" rows="10"></textarea>
-        <div class="inputArea btnArea">
-          <button id="saveBtn" type="button">저장</button>
-        </div>
-      </form>
-      <!-- 작성된 코멘트카드 -->
-      <div class="comBox">
-        <ul class="comList">
-          <!-- <li class="comCard">
-            <div class="editBtns">
-              <span class="comEdit">수정</span>
-              <span class="comDelete">삭제</span>
-            </div>
-            <div>
-              <p class="comInfo">작성자</p>
-              <p>코멘트</p>
-              <p class="comInfo">작성시간</p>
-            </div>
-          </li> -->
-        </ul>
+    <!-- <div>리뷰작성</div> -->
+    <!-- 코멘트작성 필드 -->
+    <form id="commentForm">
+      <div class="inputArea nameArea">
+        <input id="writer" type="text" placeholder=" 작성자" autofocus />
+        <!-- <div>나중에 시간 되면 여따가 별</div> -->
       </div>
+      <textarea id="comment" cols="30" rows="10"></textarea>
+      <div class="inputArea btnArea">
+        <button id="saveBtn" type="button">저장</button>
+      </div>
+    </form>
+    <!-- 작성된 코멘트카드 -->
+    <div class="comBox">
+      <ul class="comList"></ul>
     </div>
+    <!-- 디자인에 따라 toTop버튼이 필요없을 수도 있을 것 같습니다. -->
     <div class="toTopBtnContainer">
       <button id="toTopBtn" class="toTopButton">Top</button>
     </div>
