@@ -68,8 +68,10 @@
 #saveBtn:hover {
   background-color: rgb(35, 50, 101);
 }
-
-.comCard { /*작성 form이랑 위치 안맞음*/
+.comList {
+  padding: 0;
+}
+.comCard {
   position: relative;
   list-style: none;
   /* background-color: bisque; */
@@ -77,15 +79,15 @@
   margin: 0 auto 0 auto;
   display: flex;
   flex-direction: column;
+
   border-top: 1px solid gainsboro;
   border-bottom: 1px solid gainsboro;
-  border-collapse: collapse; /*겹침 해결은 어떻게 하지?*/
+  /* 보더 겹침 해결 방법? */
 }
 .editBtns {
   /* background-color: aqua; */
   position: absolute;
   margin: 10px 0 0 620px;
-  
 }
 
 .editBtns span {
@@ -95,7 +97,7 @@
 }
 
 .editBtns span:hover {
-  color: goldenrod
+  color: goldenrod;
 }
 
 .comEdit {
@@ -104,6 +106,12 @@
 }
 
 .comInfo {
-    font-size: 14px;
-    font-weight: 600;
+  margin: 20px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.comText {
+  margin: 20px;
+  font-size: 14px;
+  font-weight: 400;
 }

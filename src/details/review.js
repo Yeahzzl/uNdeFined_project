@@ -1,9 +1,7 @@
 const inputId = document.getElementById('writer');
 const commentText = document.getElementById('comment');
 const comSaveBtn = document.getElementById('saveBtn');
-const comeDeleteBtn = document.getElementById('comDelete');
-
-//writer,comment가 밖에 나와있으면(이 위치) 실행이 안되는 이유는?
+// const comeDeleteBtn = document.getElementById('comDelete');
 
 //저장버튼 - 로컬스토리지로 데이터 저장
 const saveComment = () => {
@@ -33,7 +31,7 @@ for (let i = 0; i < localStorage.length; i++) {
                   </div>
                   <div>
                       <p class="comInfo">${object.writer}</p>
-                      <p>${object.comment}</p>
+                      <p class="comText">${object.comment}</p>
                       <p class="comInfo">2023.10.26 00:01</p>
                   </div>`;
   commentList.appendChild(card);
