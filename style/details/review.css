@@ -34,7 +34,8 @@
   width: 120px;
   height: 30px;
   /* margin: 0 545px 5px 0; */
-  border: 0.5px solid #111;
+  border: none;
+  border-bottom: 0.5px solid #111;
 }
 #writer::placeholder {
   color: rgb(193, 193, 193);

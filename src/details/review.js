@@ -46,7 +46,7 @@ const deleteComment = function () {
   const id = card.id;
   if (confirm('코멘트를 삭제할까요?')) {
     localStorage.removeItem(id);
-    alert('코멘트가 정상적으로 삭제되었습니다.');
+    alert('정상적으로 삭제되었습니다.');
     card.remove();
   }
 };
