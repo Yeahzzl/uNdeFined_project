@@ -1,3 +1,9 @@
+.commentContainer {
+  z-index: 1;
+
+  position: relative;
+}
+
 #commentForm {
   /* background-color: red; */
   width: 700px;
@@ -68,7 +74,8 @@
   background-color: rgb(35, 50, 101);
 }
 
-.comCard { /*작성 form이랑 위치 안맞음*/
+.comCard {
+  /*작성 form이랑 위치 안맞음*/
   position: relative;
   list-style: none;
   /* background-color: bisque; */
@@ -85,7 +92,6 @@
   position: absolute;
   margin: 10px 0 0 620px;
   border-right: 1px solid gainsboro;
-  
 }
 
 .editBtns span {
@@ -95,7 +101,7 @@
 }
 
 .editBtns span:hover {
-  color: goldenrod
+  color: goldenrod;
 }
 
 #comEdit {
@@ -104,6 +110,6 @@
 }
 
 .comInfo {
-    font-size: 14px;
-    font-weight: 600;
+  font-size: 14px;
+  font-weight: 600;
 }

@@ -17,7 +17,7 @@ fetch(`https://api.themoviedb.org/3/movie/${movieId}?language=ko-KR`, options)
     const movieDetailsContainer = document.getElementById('movieDetails');
     movieDetailsContainer.innerHTML = `
                   <div class="imgContainer" id="${movieDetails.id}"><img class="posterImg" 
-                  src="https://image.tmdb.org/t/p/w780/${movieDetails.backdrop_path}" alt="poster">
+                  src="https://image.tmdb.org/t/p/w1280/${movieDetails.backdrop_path}" alt="poster">
                   </div>
                       <div class="textContainer">
                       <p class="titleIcon">
@@ -34,6 +34,8 @@ fetch(`https://api.themoviedb.org/3/movie/${movieId}?language=ko-KR`, options)
                       <h3>
                       상세정보
                       </h3>
+                      <div class="detailTextParent">
+                      <div class="detailText1">
                       <p class="release-date">
                       📅 _ ${movieDetails.release_date}
                       </p>
@@ -46,6 +48,8 @@ fetch(`https://api.themoviedb.org/3/movie/${movieId}?language=ko-KR`, options)
                       <p class="runtime">
                       ⏱ _ ${movieDetails.runtime}분
                       </p>
+                      </div>
+                      <div class="detailText2">
                       <p class="genres">
                       🎬 _ ${movieDetails.genres.map(genre => genre.name).join(' , ')}
                       </p>
@@ -62,6 +66,8 @@ fetch(`https://api.themoviedb.org/3/movie/${movieId}?language=ko-KR`, options)
                       🎉 _ ${movieDetails.revenue} 달러
                       </p>
                       </div>
+                      </div>
+                      </div>
                       </div>`;
   })
   .catch(err => console.error(err));
@@ -74,6 +80,14 @@ document.addEventListener('DOMContentLoaded', function () {
     window.location.href = 'index.html';
   });
 });
+// backBtn 클릭 시, 보고 있던 페이지로 돌아가게 하는 코드
+// document.addEventListener('DOMContentLoaded', function () {
+//   const backButton = document.getElementById('backBtn');
+
+backButton.addEventListener('click', function () {
+  window.history.back();
+});
+// });
 // toTopBtn 클릭 시, 스크롤 즉시 위로 끌어올리는 코드
 document.getElementById('toTopBtn').addEventListener('click', function () {
   window.scrollTo({

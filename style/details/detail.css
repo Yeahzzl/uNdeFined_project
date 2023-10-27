@@ -16,10 +16,14 @@ body {
   justify-content: center;
 }
 
+.detailTextParent {
+  display: flex;
+}
+
 .detailPage {
   /* background-color: green; */
 
-  width: 500px;
+  width: 750px;
 
   border-radius: 20px;
 
@@ -40,6 +44,8 @@ body {
 
 .textContainer {
   /* background-color: bisque; */
+
+  overflow-y: auto;
 
   padding: 20px;
 }
