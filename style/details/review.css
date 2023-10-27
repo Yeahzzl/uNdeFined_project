@@ -2,7 +2,7 @@
   /* background-color: red; */
   width: 700px;
   height: 250px;
-  margin: 0 auto 0 auto;
+  margin: 70px auto 0 auto;
   /*입력 필드 사이즈 고정하는 법..?*/
   display: flex;
   flex-direction: column;
@@ -37,7 +37,8 @@
   width: 120px;
   height: 30px;
   /* margin: 0 545px 5px 0; */
-  border: 0.5px solid #111;
+  border: none;
+  border-bottom: 0.5px solid #111;
 }
 
 #writer::placeholder {
@@ -76,9 +77,11 @@
 #saveBtn:hover {
   background-color: rgb(35, 50, 101);
 }
-
+.comList {
+  padding: 0;
+}
 .comCard {
-  /*작성 form이랑 위치 안맞음*/
+ 
   position: relative;
   list-style: none;
   /* background-color: bisque; */
@@ -86,18 +89,16 @@
   margin: 0 auto 0 auto;
   display: flex;
   flex-direction: column;
+
   border-top: 1px solid gainsboro;
   border-bottom: 1px solid gainsboro;
-  border-collapse: collapse;
-  /*겹침 해결은 어떻게 하지?*/
+  /* 보더 겹침 해결 방법? */
 }
 
 .editBtns {
   /* background-color: aqua; */
   position: absolute;
   margin: 10px 0 0 620px;
-  border-right: 1px solid gainsboro;
-
 }
 
 .editBtns span {
@@ -107,15 +108,21 @@
 }
 
 .editBtns span:hover {
-  color: goldenrod
+  color: goldenrod;
 }
 
-#comEdit {
+.comEdit {
   padding-right: 5px;
-  border-right: 1px solid gainsboro;
+  border-right: 1px solid grey;
 }
 
 .comInfo {
+  margin: 20px;
   font-size: 14px;
   font-weight: 600;
+}
+.comText {
+  margin: 20px;
+  font-size: 14px;
+  font-weight: 400;
 }
