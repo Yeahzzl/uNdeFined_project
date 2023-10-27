@@ -93,5 +93,11 @@ const checkIsNowPage = (pageNumber, index, li) => {
 // movieContainer를 empty시킨 후 => fetchMovies로 다른 페이지의 영화 정보 불러옴
 const movePage = pageNumber => {
   moviesContainer.innerHTML = '';
+
+  // pageNumber 변경시 주소창 변경
+  history.pushState(null, null, `?pageNum=${pageNumber}`);
+
+  // localStorage에 현재 페이지 번호 저장
+  localStorage.setItem("pageNumber", pageNumber);
   fetchMovies(pageNumber);
 };
