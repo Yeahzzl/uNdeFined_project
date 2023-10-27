@@ -77,7 +77,8 @@ document.addEventListener('DOMContentLoaded', function () {
   const backButton = document.getElementById('backBtn');
 
   backButton.addEventListener('click', function () {
-    window.location.href = 'index.html';
+    // 뒤로가기 버튼시 localstorage에서 pageNumber가 있다면 가져와 URL 생성
+    window.location.href = `index.html?pageNum=${localStorage.getItem("pageNumber") ?? 1}`;
   });
 });
 // backBtn 클릭 시, 보고 있던 페이지로 돌아가게 하는 코드

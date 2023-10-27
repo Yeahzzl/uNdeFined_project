@@ -152,6 +152,7 @@ header {
   text-align: center;
   padding: 20px;
   transition: opacity 0.5s;
+  cursor: pointer;
 }
 
 .img_container:hover .overview {

@@ -33,7 +33,11 @@ export const fetchMovies = page => {
     .catch(err => console.error(err));
 };
 
-fetchMovies(1);
+// URL에서 표시할 pageNumber를 가져옴
+// e.g. index.html?pageNum=123   => pageNumber = 123
+const urlSearch = new URLSearchParams(window.location.search);
+const pageNumber = urlSearch.get('pageNum') ?? 1; // pageNum이 없으면 1
+fetchMovies(pageNumber);
 
 const displayMovies = () => {
   movies.forEach(movie => {
