@@ -219,3 +219,7 @@ strong {
   transform: translate3d(-50%, -50%, 0);
   will-change: transform;
 }
+
+.color-orange {
+  color: rgb(255, 140, 0) !important;
+}
