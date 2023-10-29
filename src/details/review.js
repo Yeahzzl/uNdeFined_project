@@ -3,24 +3,41 @@ const commentText = document.getElementById('comment');
 const comSaveBtn = document.getElementById('saveBtn');
 // const comeDeleteBtn = document.getElementById('comDelete');
 
-//저장버튼 - 로컬스토리지로 데이터 저장
+//저장버튼 - 로컬스토리지로 데이터 저장(아이디, 작성자, 코멘트내용, 작성시간)
 const saveComment = () => {
   const randomId = Math.round(Math.random() * 10000000);
   const writer = JSON.stringify(inputId.value);
   const comment = JSON.stringify(commentText.value);
-  localStorage.setItem(randomId, JSON.stringify({writer, comment}));
-  alert('저장되었습니다.');
+  const time = new Date().getTime();
+
+  localStorage.setItem(randomId, JSON.stringify({writer, comment, time}));
+  alert('저장이 완료되었습니다.');
   window.location.reload();
 };
 comSaveBtn.addEventListener('click', saveComment);
 
-// for문으로 저장된 데이터 전체 가져오기
+// for문 - 저장된 전체 데이터 가져오기
 const commentList = document.querySelector('.comList');
+const allData = [];
+//id, 작성자, 코멘트내용, 작성시간 데이터
 for (let i = 0; i < localStorage.length; i++) {
   const id = localStorage.key(i);
   const object = JSON.parse(localStorage.getItem(id));
-  //   console.log(object);
-  //전체 코멘트 데이터 가져와서 form 아래에 카드 붙이기
+  allData.push(object);
+  //새 배열로 push 한 뒤 시간순으로 정렬하기
+  allData.sort((a, b) => a.time - b.time);
+
+  //시간 2023.10.29.22:00 형식으로 표현하기
+  const dateObject = new Date(object.time); //정수값으로 저장된 데이터를 날짜/시간정보로 변환한 객체 생성
+  const year = dateObject.getFullYear(); // 연도
+  const month = dateObject.getMonth() + 1; // 월 (월이 0부터 시작하므로 +1 해주기. 0 = 1월)
+  const day = dateObject.getDate(); // 일
+  const hours = dateObject.getHours(); // 시
+  const minutes = dateObject.getMinutes(); // 분
+
+  const formattedDate = `${year}.${month}.${day}. ${hours}:${minutes}`;
+
+  //form 아래에 카드 생성
   const card = document.createElement('li');
   card.className = 'comCard';
   card.id = id;
@@ -33,7 +50,7 @@ for (let i = 0; i < localStorage.length; i++) {
                     <div>
                       <p class="comInfo">${object.writer}</p>
                       <p class="comText">${object.comment}</p>
-                      <p class="comInfo">2023.10.26 00:01</p>
+                      <p class="comInfo">${formattedDate}</p>
                     </div>
                   </div>
                   <div class="editArea" style="display: none;">
@@ -43,15 +60,16 @@ for (let i = 0; i < localStorage.length; i++) {
                   </div>
                   `;
   commentList.appendChild(card);
-  //   console.log(card);
 }
+console.log(allData)// 데이터는 정렬이 되는데 카드는 정렬이 안 됨.
 
-//코멘트 삭제 실행 함수
+
+
+//코멘트 삭제를 실행 함수
 const deleteComment = function () {
   const clickedBtn = event.target;
   const card = clickedBtn.closest('.comCard');
   const id = card.id;
-  // console.log(card)
 
   if (confirm('코멘트를 삭제할까요?')) {
     localStorage.removeItem(id);
@@ -59,33 +77,28 @@ const deleteComment = function () {
     card.remove();
   }
 };
-//삭제버튼 
+//모든 삭제 버튼 요소 선택
 const delCommentBtns = document.querySelectorAll('.comDelete');
+
+//각 삭제버튼에 클릭 이벤트 리스너 등록
 delCommentBtns.forEach(button => {
   button.addEventListener('click', deleteComment);
 });
 
 //카드내용 수정 실행 함수
 const EditText = function () {
-
   activatedTextField.style.display = 'block';
   cardBox.style.display = 'none';
-
-  // const card = document.querySelector('.comCard');
-  // // const id = card.id; //이렇게 하면 하나의 카드만 가리킴
-
-  // //해당 카드의 아이디 값을 줘야할 거 ㅅ같은데
 };
 
-//수정, 수정완료, 취소 버튼 변수선언
+//수정, 수정완료, 취소 버튼 요소 선택
 const editCommentBtns = document.querySelectorAll('.comEdit');
 const editCompleteBtns = document.querySelectorAll('.completeEditing');
 const editCancelBtns = document.querySelectorAll('.cancelEditing');
 
-//수정버튼 클릭시 활성/비활성 영역 
+//수정버튼 클릭시 활성화 되는 영역 선택
 const activatedTextField = document.querySelector('.editArea');
 const cardBox = document.querySelector('.cardContent');
-
 
 editCommentBtns.forEach(button => {
   button.addEventListener('click', EditText);
@@ -94,5 +107,5 @@ editCompleteBtns.forEach(completeBtn => {
   completeBtn.addEventListener('click', updateData);
 });
 editCancelBtns.forEach(cancelBtn => {
-  cancelBtn.addEventListener('click', );
+  cancelBtn.addEventListener('click');
 });
