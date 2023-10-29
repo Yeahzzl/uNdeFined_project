@@ -59,7 +59,7 @@ const deleteComment = function () {
     card.remove();
   }
 };
-//삭제버튼
+//삭제버튼 
 const delCommentBtns = document.querySelectorAll('.comDelete');
 delCommentBtns.forEach(button => {
   button.addEventListener('click', deleteComment);
@@ -67,6 +67,7 @@ delCommentBtns.forEach(button => {
 
 //카드내용 수정 실행 함수
 const EditText = function () {
+
   activatedTextField.style.display = 'block';
   cardBox.style.display = 'none';
 
@@ -81,9 +82,10 @@ const editCommentBtns = document.querySelectorAll('.comEdit');
 const editCompleteBtns = document.querySelectorAll('.completeEditing');
 const editCancelBtns = document.querySelectorAll('.cancelEditing');
 
-//수정버튼 클릭시 활성/비활성 영역
+//수정버튼 클릭시 활성/비활성 영역 
 const activatedTextField = document.querySelector('.editArea');
 const cardBox = document.querySelector('.cardContent');
+
 
 editCommentBtns.forEach(button => {
   button.addEventListener('click', EditText);
@@ -92,5 +94,5 @@ editCompleteBtns.forEach(completeBtn => {
   completeBtn.addEventListener('click', updateData);
 });
 editCancelBtns.forEach(cancelBtn => {
-  cancelBtn.addEventListener('click');
+  cancelBtn.addEventListener('click', );
 });
