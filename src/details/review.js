@@ -8,13 +8,18 @@ const comSaveBtn = document.getElementById('saveBtn');
 //저장버튼 - 로컬스토리지로 데이터 저장(아이디, 작성자, 코멘트내용, 작성시간)
 const saveComment = () => {
   const randomId = Math.round(Math.random() * 10000000);
-  const writer = JSON.stringify(inputId.value);
-  const comment = JSON.stringify(commentText.value);
+  const writer = inputId.value;
+  const comment = commentText.value;
   const time = new Date().getTime();
 
-  localStorage.setItem(randomId, JSON.stringify({writer, comment, time}));
-  alert('저장이 완료되었습니다.');
-  window.location.reload();
+  //유효성 검사
+  if (writer === "" || comment === "") {
+    alert('내용이 입력되지 않았습니다.');
+  } else {
+    localStorage.setItem(randomId, JSON.stringify({writer, comment, time}));
+    alert('저장이 완료되었습니다.');
+    window.location.reload();
+  }
 };
 comSaveBtn.addEventListener('click', saveComment);
 
@@ -67,7 +72,7 @@ allData.forEach(data => {
   commentList.appendChild(card);
 });
 
-console.log(allData); 
+console.log(allData);
 //====================삭제===================
 //삭제버튼 클릭시 호출되는 함수
 const deleteComment = function () {
@@ -89,36 +94,24 @@ delCommentBtns.forEach(button => {
   button.addEventListener('click', deleteComment);
 });
 
-
 //=====================수정======================
 //수정 버튼 클릭시 호출되는 함수
 const EditText = function () {
-
-
   activatedTextField.style.display = 'block';
   cardBox.style.display = 'none';
-
 };
 
 // 수정 완료 버튼 클릭 시 호출되는 함수
 const updateData = function () {
-  
   activatedTextField.style.display = 'none';
   cardBox.style.display = 'block';
 };
 
-
 //취소버튼 클릭 시 호출되는 함수
 const cancelEditing = function () {
-
   activatedTextField.style.display = 'none';
   cardBox.style.display = 'block';
-
-}
-
-
-
-
+};
 
 //수정, 수정완료, 취소 버튼 요소 선택
 const editCommentBtns = document.querySelectorAll('.comEdit');
