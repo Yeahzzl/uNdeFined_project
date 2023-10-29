@@ -16,7 +16,7 @@ const saveComment = () => {
 };
 comSaveBtn.addEventListener('click', saveComment);
 
-// for문 - 저장된 전체 데이터 가져오기
+// 저장된 전체 데이터 배열에 넣어서 정렬하기
 const commentList = document.querySelector('.comList');
 const allData = [];
 //id, 작성자, 코멘트내용, 작성시간 데이터
@@ -24,46 +24,47 @@ for (let i = 0; i < localStorage.length; i++) {
   const id = localStorage.key(i);
   const object = JSON.parse(localStorage.getItem(id));
   allData.push(object);
-  //새 배열로 push 한 뒤 시간순으로 정렬하기
-  allData.sort((a, b) => a.time - b.time);
+}
+//시간순으로 정렬하기(내림차순으로 정렬- 가장 최근 카드가 가장 위에 오도록)
+allData.sort((a, b) => b.time - a.time);
 
+allData.forEach(data => {
   //시간 2023.10.29.22:00 형식으로 표현하기
-  const dateObject = new Date(object.time); //정수값으로 저장된 데이터를 날짜/시간정보로 변환한 객체 생성
+  const dateObject = new Date(data.time); //정수값으로 저장된 데이터를 날짜/시간정보로 변환한 객체 생성
   const year = dateObject.getFullYear(); // 연도
   const month = dateObject.getMonth() + 1; // 월 (월이 0부터 시작하므로 +1 해주기. 0 = 1월)
   const day = dateObject.getDate(); // 일
   const hours = dateObject.getHours(); // 시
-  const minutes = dateObject.getMinutes(); // 분
-
+  let minutes = dateObject.getMinutes(); // 분
+  minutes = minutes < 10 ? `0${minutes}` : minutes; //조건이 한 개일때 삼항연산자 사용할 수 있음
   const formattedDate = `${year}.${month}.${day}. ${hours}:${minutes}`;
 
   //form 아래에 카드 생성
   const card = document.createElement('li');
   card.className = 'comCard';
-  card.id = id;
+  card.id = data.id;
   card.innerHTML = `
-                  <div class="cardContent">
-                    <div class="editBtns">
-                      <span class="comEdit">수정</span>
-                      <span class="comDelete">삭제</span>
-                    </div>
-                    <div>
-                      <p class="comInfo">${object.writer}</p>
-                      <p class="comText">${object.comment}</p>
-                      <p class="comInfo">${formattedDate}</p>
-                    </div>
-                  </div>
-                  <div class="editArea" style="display: none;">
-                    <textarea class="editBox" cols="30" rows="10" Autofocus></textarea>
-                    <button class="completeEditing " type="button">수정완료</button>
-                    <button class="cancelEditing " type="button">취소</button>
-                  </div>
-                  `;
+                 <div class="cardContent">
+                   <div class="editBtns">
+                     <span class="comEdit">수정</span>
+                     <span class="comDelete">삭제</span>
+                   </div>
+                   <div>
+                     <p class="comInfo">${data.writer}</p>
+                     <p class="comText">${data.comment}</p>
+                     <p class="comInfo">${formattedDate}</p>
+                   </div>
+                 </div>
+                 <div class="editArea" style="display: none;">
+                   <textarea class="editBox" cols="30" rows="10" Autofocus></textarea>
+                   <button class="completeEditing " type="button">수정완료</button>
+                   <button class="cancelEditing " type="button">취소</button>
+                 </div>
+                 `;
   commentList.appendChild(card);
-}
-console.log(allData)// 데이터는 정렬이 되는데 카드는 정렬이 안 됨.
+});
 
-
+console.log(allData); // 데이터는 정렬이 되는데 카드는 정렬이 안 됨.
 
 //코멘트 삭제를 실행 함수
 const deleteComment = function () {
