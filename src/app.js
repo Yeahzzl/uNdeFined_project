@@ -75,9 +75,8 @@ const displayMovies = () => {
   });
 };
 
-//카드 클릭시 id 얼럿띄우기
-
-// 이제 alert 기능은 없어도 되는 것 같아, 그 기능을 detail.html로 넘어가게끔 코드를 변경 했습니다.
+// //카드 클릭시 id 얼럿띄우기 -> 카드 클릭시 detail.html 이동
+// 이제 alert 기능은 없어도 되는 것 같아서, 그 기능을 detail.html로 넘어가게끔 코드를 변경 했습니다.
 let alertId = function () {
   movies.forEach(movie => {
     let id = movie.id;
@@ -193,6 +192,8 @@ document.querySelector('.nameAlignment').addEventListener('click', () => {
   });
   moviesContainer.innerHTML = '';
   displayMovies();
+
+  alertId(); // detail.html 로 이동시키기 위해, alertId EventListener 를 재사용.
 });
 
 // 별점순 : 높은순->낮은순 (별점이 동일할경우? 이름순과 동일하게)
@@ -203,6 +204,8 @@ document.querySelector('.scoreAlignment').addEventListener('click', () => {
   }); //1-3번
   moviesContainer.innerHTML = ''; //기존 카드 지워주기
   displayMovies(); //4번
+
+  alertId(); // detail.html 로 이동시키기 위해, alertId EventListener 를 재사용.
 });
 
 //추가) 날짜순 : 개봉일기준 최근부터
@@ -212,6 +215,8 @@ document.querySelector('.dateAlignment').addEventListener('click', () => {
   });
   moviesContainer.innerHTML = '';
   displayMovies();
+
+  alertId(); // detail.html 로 이동시키기 위해, alertId EventListener 를 재사용.
 });
 
 //localStorage를 이용해서 내가 '이름순','별점순','최신순'을 클릭했다는 정보를 저장해두면 페이지를 넘어가도 그대로 정렬이 이루어 질 수 있음
