@@ -1,3 +1,5 @@
+//==================코멘트 저장=================
+
 const inputId = document.getElementById('writer');
 const commentText = document.getElementById('comment');
 const comSaveBtn = document.getElementById('saveBtn');
@@ -28,6 +30,7 @@ for (let i = 0; i < localStorage.length; i++) {
 //시간순으로 정렬하기(내림차순으로 정렬- 가장 최근 카드가 가장 위에 오도록)
 allData.sort((a, b) => b.time - a.time);
 
+//=====================작성 코멘트 화면에 표시 =======================
 allData.forEach(data => {
   //시간 2023.10.29.22:00 형식으로 표현하기
   const dateObject = new Date(data.time); //정수값으로 저장된 데이터를 날짜/시간정보로 변환한 객체 생성
@@ -64,9 +67,9 @@ allData.forEach(data => {
   commentList.appendChild(card);
 });
 
-console.log(allData); // 데이터는 정렬이 되는데 카드는 정렬이 안 됨.
-
-//코멘트 삭제를 실행 함수
+console.log(allData); 
+//====================삭제===================
+//삭제버튼 클릭시 호출되는 함수
 const deleteComment = function () {
   const clickedBtn = event.target;
   const card = clickedBtn.closest('.comCard');
@@ -86,11 +89,36 @@ delCommentBtns.forEach(button => {
   button.addEventListener('click', deleteComment);
 });
 
-//카드내용 수정 실행 함수
+
+//=====================수정======================
+//수정 버튼 클릭시 호출되는 함수
 const EditText = function () {
+
+
   activatedTextField.style.display = 'block';
   cardBox.style.display = 'none';
+
 };
+
+// 수정 완료 버튼 클릭 시 호출되는 함수
+const updateData = function () {
+  
+  activatedTextField.style.display = 'none';
+  cardBox.style.display = 'block';
+};
+
+
+//취소버튼 클릭 시 호출되는 함수
+const cancelEditing = function () {
+
+  activatedTextField.style.display = 'none';
+  cardBox.style.display = 'block';
+
+}
+
+
+
+
 
 //수정, 수정완료, 취소 버튼 요소 선택
 const editCommentBtns = document.querySelectorAll('.comEdit');
@@ -101,12 +129,14 @@ const editCancelBtns = document.querySelectorAll('.cancelEditing');
 const activatedTextField = document.querySelector('.editArea');
 const cardBox = document.querySelector('.cardContent');
 
+// 버튼 클릭 이벤트 처리
 editCommentBtns.forEach(button => {
   button.addEventListener('click', EditText);
 });
+
 editCompleteBtns.forEach(completeBtn => {
   completeBtn.addEventListener('click', updateData);
 });
 editCancelBtns.forEach(cancelBtn => {
-  cancelBtn.addEventListener('click');
+  cancelBtn.addEventListener('click', cancelEditing);
 });
