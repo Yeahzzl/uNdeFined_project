@@ -27,11 +27,11 @@ h4 {
 .detailPage {
   /* background-color: green; */
 
-  width: 750px;
+  width: 800px;
 
   border-radius: 20px;
 
-  box-shadow: 0px 15px 20px 0px #777;
+  box-shadow: 0px 3px 13px 0px #77777779;
 }
 
 .posterImg {

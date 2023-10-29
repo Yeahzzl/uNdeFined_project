@@ -108,7 +108,6 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-// });
 // toTopBtn 클릭 시, 스크롤 즉시 위로 끌어올리는 코드
 document.getElementById('toTopBtn').addEventListener('click', function () {
   window.scrollTo({
