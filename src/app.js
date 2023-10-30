@@ -1,3 +1,6 @@
+import {makePagination} from './paging.js';
+import {hideLoading, showLoading, validationInput} from './helper.js';
+
 const options = {
   method: 'GET',
   headers: {
@@ -6,23 +9,35 @@ const options = {
       'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiYjg5NzEzNmQwZGFmYWRjZGI0MDJhYjcyODBiNWJiZSIsInN1YiI6IjY1MmYyNmQwZWE4NGM3MDEwYzFkYzNhMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.LHU-uAz75iuYfxcauUmesT53m3QG4ZKs9xBdSmPsRPs',
   },
 };
-const movieUrl =
-  'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=1&sort_by=popularity.desc';
+
 const baseUrl = 'https://image.tmdb.org/t/p/';
 
 //Rated movie
 let movies = null;
-const moviesContainer = document.getElementById('movieList');
+export const moviesContainer = document.getElementById('movieList');
 
-fetch(movieUrl, options)
-  .then(res => res.json())
-  .then(data => {
-    movies = data['results'];
-    //함수를 밖에 선언해보고 시
-    displayMovies();
-    alertId();
-  })
-  .catch(err => console.error(err));
+export const fetchMovies = page => {
+  showLoading(moviesContainer);
+  // page를 외부에서 받아서 링크 string을 만든다.
+  const movieUrl = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=${page}&sort_by=popularity.desc`;
+  fetch(movieUrl, options)
+    .then(res => res.json())
+    .then(data => {
+      movies = data['results'];
+      //함수를 밖에 선언해보고 시
+      displayMovies();
+      alertId();
+      makePagination({page: data.page, totalPages: data.total_pages});
+      hideLoading(moviesContainer);
+    })
+    .catch(err => console.error(err));
+};
+
+// URL에서 표시할 pageNumber를 가져옴
+// e.g. index.html?pageNum=123   => pageNumber = 123
+const urlSearch = new URLSearchParams(window.location.search);
+const pageNumber = urlSearch.get('pageNum') ?? 1; // pageNum이 없으면 1
+fetchMovies(pageNumber);
 
 const displayMovies = () => {
   movies.forEach(movie => {
@@ -40,18 +55,21 @@ const displayMovies = () => {
       return `https://image.tmdb.org/t/p/original${posterPath}`;
     };
     //받아온 영화 데이터 카드 만들어서 html에 붙이기
+    // 가운데 정렬을 하기 위해 <span class='overview'> 와 <img>를 하나의 <div> 안으로 넣음 (width 통일 위해)
     const tempHtml = `
-                            <div class="img_container">
-                                <div class="movie_poster">
-                                    <img id="${id}" class="poster_img"
-                                        src="${getImageUrl(posterPath)}"
-                                        alt="${title}">
+                            <div class='img_container'>
+                                <div class='movie_poster'>
+                                    <div class='position_relative'>
+                                        <span class='overview'>${overview}</span>
+                                        <img id='${id}' class='poster_img'
+                                        src='${getImageUrl(posterPath)}'
+                                        alt='${title}'>
+                                    </div>
                                 </div>
-                                <span class="overview">${overview}</span>
-                                <div class="movie_cont">
+                                <div class='movie_cont'>
                                     <strong>${title}</strong>
-                                        <span class="cont_text">평점 ${voteAverage}</span>
-                                        <span class="cont_text">개봉 ${releaseDate}</span>
+                                        <span class='cont_text'>평점 ${voteAverage}</span>
+                                        <span class='cont_text'>개봉 ${releaseDate}</span>
                                 </div>
                             </div>
                             `;
@@ -60,8 +78,8 @@ const displayMovies = () => {
   });
 };
 
-//카드 클릭시 id 얼럿띄우기
-
+// //카드 클릭시 id 얼럿띄우기 -> 카드 클릭시 detail.html 이동
+// 이제 alert 기능은 없어도 되는 것 같아서, 그 기능을 detail.html로 넘어가게끔 코드를 변경 했습니다.
 let alertId = function () {
   movies.forEach(movie => {
     let id = movie.id;
@@ -70,11 +88,12 @@ let alertId = function () {
     //근데 카드를 넣을때 마다 모든 카드의 아이디가 다 출력되어버림... 각각의 카드 아이디가 받아와져야 되는데 그걸 못 함.
     let eachMovie = document.getElementById(id);
     eachMovie.parentElement.parentElement.addEventListener('click', function () {
-      console.log(id);
-      alert(id);
+      window.location.href = `detail.html?id=${id}`;
+      console.log(movieList);
     });
   });
 };
+// detail.html 넘어가는 코드 끝.
 
 //영화 검색
 let allMovies = null;
@@ -82,6 +101,10 @@ const searchInput = document.querySelector('#search_input');
 const searchButton = document.querySelector('#search_button');
 const searchMovies = () => {
   let searchWord = searchInput.value;
+
+  // 입력어 검증
+  if (!validationInput(searchWord)) return;
+
   fetch(
     `https://api.themoviedb.org/3/search/movie?query=${searchWord}&include_adult=false&language=ko-KR&page=1&region=KR`,
     options,
@@ -92,14 +115,16 @@ const searchMovies = () => {
       //받아온 영화 데이터 카드 만들어서 html에 붙이기
       //1. 그 전에 원래 페이지 내용을 지운다.
       clearPage();
+
       function clearPage() {
         while (moviesContainer.firstChild) {
           moviesContainer.removeChild(moviesContainer.firstChild);
         }
-        // while 루프: 특적 조건이 참일 때 실행하기 -> moviesContainer안에 자식 요소가 존재하면 실행.
-        // removeChid 메서드->  while 루프를 돌면서 firstChid를 지움 -> 모든 자식 요소 지우기
+        // while 루프: 특정 조건이 참일 때 실행하기 -> moviesContainer안에 자식 요소가 존재하면 실행.
+        // removeChid 메서드->  while 루프를 돌면서 firstChild를 지움 -> 모든 자식 요소 지우기
         // 자식 요소가 다 지워지면 멈춤.
       }
+
       //1. 빈 검색창 검색시 페이지 reload
       //2.  검색결과 있으면 카드 붙이기
       //3. 없으면 검색 결과가 없다고 표시하기
@@ -119,17 +144,17 @@ const searchMovies = () => {
           };
 
           const tempHtml = `
-                                    <div class="img_container">
-                                        <div class="movie_poster">
-                                            <img id="${id}" class="poster_img"
-                                                src="${getImageUrl(posterPath)}"
-                                                alt="${title}">
+                                    <div class='img_container'>
+                                        <div class='movie_poster'>
+                                            <img id='${id}' class='poster_img'
+                                                src='${getImageUrl(posterPath)}'
+                                                alt='${title}'>
                                         </div>
-                                        <span class="overview">${overview}</span>       
-                                        <div class="movie_cont">
+                                        <span class='overview'>${overview}</span>       
+                                        <div class='movie_cont'>
                                             <strong>${title}</strong>
-                                            <span class="cont_text">평점: ${voteAverage}</span>
-                                            <span class="cont_text">개봉일: ${releaseDate}</span>
+                                            <span class='cont_text'>평점: ${voteAverage}</span>
+                                            <span class='cont_text'>개봉일: ${releaseDate}</span>
 
                                         </div>
                                     </div>
@@ -155,3 +180,67 @@ searchInput.addEventListener('keyup', function (event) {
     document.getElementById('search_button').click();
   }
 });
+
+//이름순, 별점순 정렬
+//1. 이름순, 별점순 클릭시 클릭이벤트 발생
+//2. 클릭이 발생하면 기존에 있는 데이터를 가져오기
+//3. 가져온 후 이름순, 별점순으로 순서를 정렬
+//4. 정렬한것을 화면에 그려주기
+//추가) 홈화면 아이콘 누르면 다시 처음페이지, 순서로 돌아갈수있게..!
+
+//이름순 : 한글->숫자->영어 그 외문자... 순서설정
+document.querySelector('.nameAlignment').addEventListener('click', event => {
+  const nameAlignment = movies.sort(function (a, b) {
+    let titleACode = a.title[0].charCodeAt(0);
+    let titleBCode = b.title[0].charCodeAt(0);
+    if (titleACode <= 12593) titleACode += 999999;
+    if (titleBCode <= 12593) titleBCode += 999999; //(ascii코드)한글을 큰 숫자로 표현해서 한글->숫자->영문순으로 정렬
+    return titleACode < titleBCode ? -1 : titleACode > titleBCode ? 1 : 0;
+  });
+  moviesContainer.innerHTML = '';
+  changeColor(event.target);
+  displayMovies();
+
+  alertId(); // detail.html 로 이동시키기 위해, alertId EventListener 를 재사용.
+});
+
+// 별점순 : 높은순->낮은순 (별점이 동일할경우? 이름순과 동일하게)
+// console.log(movies);
+document.querySelector('.scoreAlignment').addEventListener('click', event => {
+  const scoreAlignment = movies.sort(function (a, b) {
+    return b.vote_average - a.vote_average;
+  }); //1-3번
+  moviesContainer.innerHTML = ''; //기존 카드 지워주기
+  changeColor(event.target);
+  displayMovies(); //4번
+
+  alertId(); // detail.html 로 이동시키기 위해, alertId EventListener 를 재사용.
+});
+
+//추가) 날짜순 : 개봉일기준 최근부터
+document.querySelector('.dateAlignment').addEventListener('click', event => {
+  const dateAlignment = movies.sort(function (a, b) {
+    return new Date(b.release_date).getTime() - new Date(a.release_date).getTime();
+  });
+  moviesContainer.innerHTML = '';
+  changeColor(event.target);
+  displayMovies();
+
+  alertId(); // detail.html 로 이동시키기 위해, alertId EventListener 를 재사용.
+});
+
+//localStorage를 이용해서 내가 '이름순','별점순','최신순'을 클릭했다는 정보를 저장해두면 페이지를 넘어가도 그대로 정렬이 이루어 질 수 있음
+
+//localStorage를 이용해서 내가 '이름순','별점순','최신순'을 클릭했다는 정보를 저장해두면 페이지를 넘어가도 그대로 정렬이 이루어 질 수 있음*
+
+// 클릭한 요소를 매개변수로 받아옴
+
+const changeColor = target => {
+  // 나머지 버튼에서는 color-orange 클래스 전부 삭제*
+  document.querySelectorAll('.orderButton').forEach(elem => {
+    elem.classList.remove('color-orange');
+  });
+
+  // 클릭한 요소에 color-orange 클래스 추가*
+  target.classList.add('color-orange');
+};

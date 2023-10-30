@@ -1,14 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detail</title>
+    <link rel="stylesheet" href="/style/details/review.css" />
+    <script type="module" src="src/details/review.js"></script>
+    <link href="style/details/detail.css" rel="stylesheet" type="text/css" />
+    <script type="module" src="src/details/detail.js"></script>
+  </head>
+
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detail</title>
+  <link rel="stylesheet" href="/style/details/review.css" />
+  <script type="module" src="src/details/review.js"></script>
+  <link href="style/details/detail.css" rel="stylesheet" type="text/css" />
+  <script type="module" src="src/details/detail.js"></script>
 </head>
 
 <body>
-
-</body>
-
+  <div class="backBtnContainer">
+    <button id="backBtn" class="backButton">Back</button>
+  </div>
+  <div class="pageContainer">
+    <div id="movieDetails" class="detailPage"></div>
+  </div>
+  <!-- <div>리뷰작성</div> -->
+  <!-- 코멘트작성 필드 -->
+  <form id="commentForm">
+    <div class="inputArea nameArea">
+      <input class="userInfo writer" type="text" placeholder=" 작성자" autofocus />
+      <input class="userInfo password" type="password" placeholder="비밀번호">
+    </div>
+    <div class="pageContainer">
+      <div id="movieDetails" class="detailPage"></div>
+    </div>
+    <!-- <div>리뷰작성</div> -->
+    <!-- 코멘트작성 필드 -->
+    <form id="commentForm">
+      <div class="inputArea nameArea">
+        <input id="writer" type="text" placeholder=" 작성자" autofocus />
+        <!-- <div>나중에 시간 되면 여따가 별</div> -->
+      </div>
+      <textarea id="comment" cols="30" rows="10"></textarea>
+      <div class="inputArea btnArea">
+        <button id="saveBtn" type="button">저장</button>
+      </div>
+    </form>
+    <!-- 작성된 코멘트카드 -->
+    <div class="comBox">
+      <ul class="comList"></ul>
+    </div>
+    <!-- 디자인에 따라 toTop버튼이 필요없을 수도 있을 것 같습니다. -->
+    <div class="toTopBtnContainer">
+      <button id="toTopBtn" class="toTopButton">Top</button>
+    </div>
+  </body>
 </html>
+
+<!-- 
+    내가 맡은 것은?
+    영화 카드를 누르면 디테일 페이지가 떠야함.
+    그 디테일 페이지에는 영화의 상세 정보(Details Fetch)가 들어가야함.
+    그리고 리뷰 작성을 위한 공간을 마련해야함.
+    아니, 그냥 클릭을 했을 때, 그려져있는 html을 지우고 디테일 패치를 불러오면 되는 게 아닐까? 
+    지금 방식으로 하려면 detail html을 연동? 시켜야 하는 과정이 늘어나긴 하겠지..?
+    
+    내가 원하는 순서.
+    1. 현재 웹페이지에 그려진 영화 카드리스트에서, 하나의 영화 카드를 클릭하면, 이벤트가 발생.
+    2. 클릭 이벤트로 인해, 디테일 페이지로 이동.
+    3. 디테일 페이지는 TMDB에서 받아온 Details Fetch가 html을 그릴 것임.
+    
+    내가 해야할 것?
+    1. 클릭 이벤트 넣기. 
+    2. Details Fetch. 
+    3. 
+ -->

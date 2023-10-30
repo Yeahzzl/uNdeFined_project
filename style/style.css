@@ -1,147 +1,237 @@
 body {
-    margin: 0;
-    background-color: rgb(255, 255, 255);
-    color: rgb(57, 57, 58)
+  margin: 0;
+  background-color: rgb(255, 255, 255);
+  color: rgb(57, 57, 58);
 }
 
+.logo {
+  width: 50px;
+  margin-top: 80px;
+  margin-right: 30px;
+  border-radius: 100%;
+}
 header {
-    /* background-color: coral; */
-    width: 100%;
-    height: 150px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  /* background-color: coral; */
+  width: 100%;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 ::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 .search_area {
-    background-color: rgb(255, 255, 255);
-    width: 500px;
-    height: 50px;
-    padding: 0 15px;
-    margin-top: 50px;
-    border: 1px solid rgb(56, 55, 55);
-    border-radius: 30px;
-
+  background-color: rgb(255, 255, 255);
+  width: 500px;
+  height: 50px;
+  padding: 0 15px;
+  margin-top: 80px;
+  border: 1px solid rgb(56, 55, 55);
+  border-radius: 30px;
 }
 
 #search_input {
-    background-color: rgb(255, 255, 255);
-    border: none;
-    width: 400px;
-    height: 30px;
-    margin: 8px 0 0 10px;
-    font-size: 16px;
+  background-color: rgb(255, 255, 255);
+  border: none;
+  width: 400px;
+  height: 30px;
+  margin: 8px 0 0 10px;
+  font-size: 16px;
 }
 
 #search_input:focus {
-    outline: none;
+  outline: none;
 }
 
 #search_input:focus::placeholder {
-    color: transparent;
+  color: transparent;
 }
 
 #search_button {
-    width: 75px;
-    height: 35px;
-    background-color: transparent;
-    border: none;
-    font-size: 18px;
-    cursor: pointer;
+  width: 75px;
+  height: 35px;
+  background-color: transparent;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+#alignment {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 80px;
+  margin-top: 50px;
+}
+
+#alignment a {
+  font-weight: 500;
+  color: black;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+.nameAlignment {
+  padding-right: 15px;
+  border-right: 1.5px solid #adb5bd;
+}
+
+.scoreAlignment {
+  padding-left: 15px;
+  padding-right: 15px;
+  border-right: 1.5px solid #adb5bd;
+}
+
+.dateAlignment {
+  padding-left: 15px;
+}
+#alignment a:hover {
+  color: rgb(255, 140, 0);
 }
 
 #movieList {
-    /* background-color: yellow; */
-    width: 94%;
-    /* height: 700px; */
-    display: grid;
-    grid-template-rows: repeat(4, 1fr);
-    grid-template-columns: repeat(5, 1fr);
-    column-gap: 10px;
-    row-gap: 150px;
-    justify-content: space-between;
-    margin: 20px auto 0 auto;
+  /* background-color: yellow; */
+  width: 94%;
+  /* height: 700px; */
+  display: grid;
+  /* grid-template-rows: repeat(4, 1fr); */
+  /* grid-template-columns: repeat(5, 1fr); */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  /*column-gap: 10px;*/
+  row-gap: 30px;
+  justify-content: center;
+  margin: 20px auto 0 auto;
+  /* min-height: 100vh; */
 }
 
 .item_movie {
-    /* background-color: red; */
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 240px;
-    height: 450px;
-    padding: 10px;
-    line-height: 150%;
+  max-width: 100%;
+  /* background-color: red; */
+  display: flex;
+  flex-direction: column;
+  /* align-items: flex-start; */
+  /* width: 240px;
+  height: 450px; */
+  padding: 10px;
+  line-height: 150%;
 }
 
 .img_container {
-    /* background-color: blueviolet; */
-    position: relative;
-    width: 220px;
-    height: 360px;
-  }
+  /* background-color: blueviolet; */
+  position: relative;
+  /*width: 220px;*/
+  height: auto;
+
+  /* img_container 가운데 정렬 */
+  text-align: center;
+}
 
 .poster_img {
-    /* position: absolute; */
-    max-width: 240px;
-    min-height: 380px;
-    height: 100%;
-    border-radius: 20px;
-    box-shadow: 0 15px 5px -12px grey; /*카드 아래에만 그림자 주기*/
+  /* position: absolute; */
+  max-width: 240px;
+  min-height: 380px;
+  height: 100%;
+  border-radius: 20px;
+  box-shadow: 0 15px 5px -12px grey; /*카드 아래에만 그림자 주기*/
+}
+
+.position_relative {
+  position: relative;
 }
 
 .overview {
-    width: 200px;
-    height: 340px;
-        /*poster_img와 사이즈를 맞추면 자꾸 밖으로 튀어나감*/
-    border-radius: 20px;
-    overflow-y: scroll;
-    position: absolute; /* img_container 와 겹치게*/
-    top: 0;
-    left: 0;    /*위치 top, left로*/
-    background: rgba(0, 0, 0, 0.523);
-    color: #fff; 
-    opacity: 0;
-    visibility: hidden; 
-    /* display: none; */ 
-    /*display none으로 했다가 마우스 hover block으로 하니 트랜지션 적용이 안되네*/
-    text-align: center;
-    padding: 20px;
-    transition: opacity 0.5s;
-  }
+  width: 200px;
+  height: 340px;
+  /*poster_img와 사이즈를 맞추면 자꾸 밖으로 튀어나감*/
+  border-radius: 20px;
+  overflow-y: scroll;
+  position: absolute; /* img_container 와 겹치게*/
+  top: 0;
+  left: 0; /*위치 top, left로*/
+  /* postion: absolute 영역에서 가운데 정렬 위해 추가한 코드  ---- */
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  /* ---- */
+  background: rgba(0, 0, 0, 0.523);
+  color: #fff;
+  opacity: 0;
+  visibility: hidden;
+  /* display: none; */
+  /*display none으로 했다가 마우스 hover block으로 하니 트랜지션 적용이 안되네*/
+  padding: 20px;
+  transition: opacity 0.5s;
+  cursor: pointer;
+}
 
-  .img_container:hover .overview {
-    opacity: 1;
-    visibility: visible;
-    /* display: block; 호버 시 보이게 하려고 했는데 안됨 */
-  }
+.img_container:hover .overview {
+  opacity: 1;
+  visibility: visible;
+  /* display: block; 호버 시 보이게 하려고 했는데 안됨 */
+}
 
-  /* .img_container:hover .poster_img {
+/* .img_container:hover .poster_img {
     filter: brightness(50%)
     display: block; 호버 시 보이게 하려고 했는데 안됨
   } */
 
-
 .movie_cont {
-    /* background-color: blue; */
-    min-width: 97%;
-    display: flex;
-    flex-direction: column;
+  /* background-color: blue; */
+  min-width: 97%;
+  display: flex;
+  flex-direction: column;
 }
 strong {
-    font-size: 20px;
-    padding-top: 10px;
+  font-size: 20px;
+  padding-top: 10px;
 }
 .cont_text {
-    font-weight: 700;
+  font-weight: 700;
 }
 
 .scroll {
-    height: 200px;
-    overflow-y: scroll;
+  height: 200px;
+  overflow-y: scroll;
 }
 
+@keyframes spinner {
+  0% {
+    transform: translate3d(-50%, -50%, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate3d(-50%, -50%, 0) rotate(360deg);
+  }
+}
+
+.spin-bg::before {
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+}
+
+.spin::before {
+  animation: 1.5s linear infinite spinner;
+  animation-play-state: inherit;
+  border: solid 5px #cfd0d1;
+  border-bottom-color: #1c87c9;
+  border-radius: 50%;
+  content: '';
+  height: 60px;
+  width: 60px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  will-change: transform;
+}
+
+.color-orange {
+  color: rgb(255, 140, 0) !important;
+}

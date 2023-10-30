@@ -1,0 +1,148 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  margin: 15px auto 10px auto;
+}
+
+h4 {
+  margin: 5px auto 5px auto;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.detailPage {
+  /* background-color: green; */
+
+  width: 800px;
+
+  border-radius: 20px;
+
+  box-shadow: 0px 3px 13px 0px #77777779;
+}
+
+.posterImg {
+  max-width: 100%;
+
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.titleIcon {
+  max-width: 25px;
+  max-height: 25px;
+
+  margin-top: 0;
+}
+
+.textContainer {
+  padding: 20px;
+}
+
+.detailButton {
+  background-color: transparent;
+
+  border: 0px solid transparent;
+
+  font-size: 24px;
+
+  margin: 10px auto 10px auto;
+}
+
+/* .footerTextContainer {
+  border-top: 4px dotted #777;
+  margin-top: 10px;
+} */
+
+.detailTextParent {
+  display: flex;
+}
+
+.detailText1 {
+  margin: 10px auto auto 5px;
+}
+
+.detailText2 {
+  margin: 10px auto auto auto;
+}
+
+.backBtnContainer {
+  width: 100px;
+  height: 100px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 20px auto auto 20px;
+}
+
+.toTopBtnContainer {
+  width: 100px;
+  height: 100px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: auto 20px 20px auto;
+}
+
+#backBtn {
+  width: 80px;
+  height: 80px;
+
+  background-color: #d7d7d7aa;
+
+  border: 0px solid #d7d7d7aa;
+  border-radius: 50%;
+
+  box-shadow: 3px 3px 15px 0px lightslategray;
+
+  cursor: pointer;
+}
+
+#toTopBtn {
+  width: 80px;
+  height: 80px;
+
+  background-color: #d7d7d7aa;
+
+  border: 0px solid #d7d7d7aa;
+  border-radius: 50%;
+
+  box-shadow: 3px 3px 15px 0px lightslategray;
+
+  cursor: pointer;
+}
+
+#backBtn:hover {
+  background-color: rgb(29, 29, 29);
+  color: white;
+
+  border: 2px solid rgb(29, 29, 29);
+  border-radius: 50%;
+  transition: background-color 0.3s color 0.3s;
+}
+
+#toTopBtn:hover {
+  background-color: rgb(29, 29, 29);
+  color: white;
+
+  border: 2px solid rgb(29, 29, 29);
+  border-radius: 50%;
+  transition: background-color 0.3s color 0.3s;
+}

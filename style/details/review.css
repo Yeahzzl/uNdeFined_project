@@ -1,0 +1,199 @@
+.commentContainer {
+  z-index: 1;
+
+  position: relative;
+}
+
+#commentForm {
+  /* background-color: red; */
+  width: 700px;
+  height: 250px;
+  margin: 70px auto 0 auto;
+  /*입력 필드 사이즈 고정하는 법..?*/
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 0px solid #777;
+  border-radius: 15px;
+
+  box-shadow: 0px 3px 13px 0px #77777779;
+}
+
+.inputArea {
+  /* background-color: green; */
+  width: 650px;
+  height: 45px;
+  margin: 10px 0;
+}
+
+.nameArea {
+  width: 650px;
+  border-bottom: 0.5px solid #777;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btnArea {
+  margin: 10px 0 10px 0;
+  border-top: 0.5px solid #777;
+}
+
+.writer {
+  width: 120px;
+  height: 30px;
+  /* margin: 0 545px 5px 0; */
+  border: none;
+  border-bottom: 0.5px solid #111;
+}
+
+.password {
+  width: 120px;
+  height: 20px;
+  border: 1px solid grey;
+}
+
+.userInfo::placeholder {
+  color: rgb(193, 193, 193);
+}
+
+.userInfo:focus {
+  outline: none;
+}
+
+#comment {
+  /* background-color: aqua; */
+  width: 650px;
+  height: 120px;
+  border: none;
+  resize: none;
+  overflow: hidden;
+}
+
+#comment:focus {
+  outline: none;
+}
+
+#saveBtn {
+  background-color: #d7d7d7aa;
+  /*버튼 색 바꾸기*/
+  color: black;
+  width: 100px;
+  height: 35px;
+  margin: 10px 0 0 550px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+
+  cursor: pointer;
+}
+
+#saveBtn:hover {
+  background-color: rgb(29, 29, 29);
+  color: white;
+}
+.comList {
+  padding: 0;
+}
+.comCard {
+  position: relative;
+  list-style: none;
+  /* background-color: bisque; */
+  width: 700px;
+  margin: 30px auto 0 auto;
+  display: flex;
+  flex-direction: column;
+
+  border-top: 1px solid #777;
+  border-bottom: 1px solid #777;
+  /* 보더 겹침 해결 방법? */
+}
+
+.editBtns {
+  /* background-color: aqua; */
+  position: absolute;
+  margin: 10px 0 0 620px;
+}
+
+.editBtns span {
+  font-size: 13px;
+  width: 40px;
+  height: 20px;
+
+  cursor: pointer;
+}
+
+.editBtns span:hover {
+  color: goldenrod;
+}
+
+.comEdit {
+  padding-right: 5px;
+  border-right: 1px solid #777;
+}
+
+.comInfo {
+  margin: 20px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.comText {
+  margin: 20px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.editArea {
+  height: 150px;
+  border: 1px solid gainsboro;
+  border-radius: 3px;
+}
+
+.editArea button {
+  width: 70px;
+  height: 35px;
+  border-radius: 5px;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.editBox {
+  width: 650px;
+  height: 80px;
+  resize: none;
+  overflow: hidden;
+  margin: 10px 0 0 20px ;
+  border: 1px solid gainsboro;
+
+}
+
+.editBox:focus {
+  outline: none;
+}
+
+.completeEditing {
+  position: relative;
+  background-color: rgb(58, 84, 171);
+  border: none;
+  color:#fff;
+  margin-left: 525px;
+}
+.completeEditing:hover {
+  background-color: rgb(35, 50, 101);
+}
+
+.cancelEditing {
+  position: absolute;
+  background-color: #fff;
+  color: #111;
+  border: none;
+  margin-left: 10px;
+  border: 1px solid #111;
+}
+.cancelEditing:hover {
+  background-color: #fff;
+  color: rgb(58, 84, 171);
+  border: 1.5px solid rgb(58, 84, 171);
+}
