@@ -9,6 +9,7 @@ const comSaveBtn = document.getElementById('saveBtn');
 //저장버튼 - 로컬스토리지로 데이터 저장(아이디, 작성자, 코멘트내용, 작성시간)
 const saveComment = () => {
   const randomId = Math.round(Math.random() * 10000000);
+
   const writer = inputId.value;
   const password = inputPw.value;
   const comment = commentText.value;
@@ -83,18 +84,15 @@ const deleteComment = function (event) {
   const card = clickedBtn.closest('.comCard');
   const id = card.id;
   const pw = JSON.parse(localStorage.getItem(id)).password;
-  const checkPasswordMatch = prompt('비밀번호를 입력해주세요.');
+  let checkPasswordMatch = prompt('비밀번호를 입력해주세요.');
 
-  // while(checkPasswordMatch !== pw){
-
-  // }
-  if (checkPasswordMatch === pw) {
-    localStorage.removeItem(id);
-    alert('정상적으로 삭제되었습니다.');
-    card.remove();
-  } else {
-    prompt('비밀번호가 일치하지 않습니다. 다시 입력해주세요.');
+  while (checkPasswordMatch !== pw) {
+    checkPasswordMatch = prompt('비밀번호가 일치하지 않습니다. 다시 입력해주세요.');
   }
+
+  localStorage.removeItem(id);
+  alert('정상적으로 삭제되었습니다.');
+  card.remove();
 };
 //모든 삭제 버튼 요소 선택
 const delCommentBtns = document.querySelectorAll('.comDelete');
