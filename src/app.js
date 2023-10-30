@@ -1,5 +1,5 @@
 import {makePagination} from './paging.js';
-import {hideLoading, showLoading} from './helper.js';
+import {hideLoading, showLoading, validationInput} from './helper.js';
 
 const options = {
   method: 'GET',
@@ -55,14 +55,17 @@ const displayMovies = () => {
       return `https://image.tmdb.org/t/p/original${posterPath}`;
     };
     //받아온 영화 데이터 카드 만들어서 html에 붙이기
+    // 가운데 정렬을 하기 위해 <span class='overview'> 와 <img>를 하나의 <div> 안으로 넣음 (width 통일 위해)
     const tempHtml = `
                             <div class='img_container'>
                                 <div class='movie_poster'>
-                                    <img id='${id}' class='poster_img'
+                                    <div class='position_relative'>
+                                        <span class='overview'>${overview}</span>
+                                        <img id='${id}' class='poster_img'
                                         src='${getImageUrl(posterPath)}'
                                         alt='${title}'>
+                                    </div>
                                 </div>
-                                <span class='overview'>${overview}</span>
                                 <div class='movie_cont'>
                                     <strong>${title}</strong>
                                         <span class='cont_text'>평점 ${voteAverage}</span>
@@ -98,6 +101,10 @@ const searchInput = document.querySelector('#search_input');
 const searchButton = document.querySelector('#search_button');
 const searchMovies = () => {
   let searchWord = searchInput.value;
+
+  // 입력어 검증
+  if (!validationInput(searchWord)) return;
+
   fetch(
     `https://api.themoviedb.org/3/search/movie?query=${searchWord}&include_adult=false&language=ko-KR&page=1&region=KR`,
     options,
