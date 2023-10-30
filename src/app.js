@@ -25,6 +25,28 @@ export const fetchMovies = page => {
     .then(data => {
       movies = data['results'];
       //함수를 밖에 선언해보고 시
+
+      // 정렬하는 함수를 다 따로 만드는 것이 더 보기 편함
+      // 이름순
+      if (localStorage.getItem('nameFix')) {
+      }
+      //   let titleACode = a.title[0].charCodeAt(0);
+      //   let titleBCode = b.title[0].charCodeAt(0);
+      //   if (titleACode <= 12593) titleACode += 999999;
+      //   if (titleBCode <= 12593) titleBCode += 999999; //(ascii코드원리)한글을 큰 숫자로 표현해서 한글->숫자->영문순으로 정렬
+      //   return titleACode < titleBCode ? -1 : titleACode > titleBCode ? 1 : 0;
+      // });
+      // 평점순
+      localStorage.getItem('scoreFix');
+      // const scoreAlignment = movies.sort(function (a, b) {
+      //   return b.vote_average - a.vote_average;
+      // }); //1-3번
+      // 최신순
+      localStorage.getItem('dateFix');
+      // const dateAlignment = movies.sort(function (a, b) {
+      //   return new Date(b.release_date).getTime() - new Date(a.release_date).getTime();
+      // });
+
       displayMovies();
       alertId();
       makePagination({page: data.page, totalPages: data.total_pages});
@@ -181,33 +203,35 @@ searchInput.addEventListener('keyup', function (event) {
   }
 });
 
-//이름순, 별점순 정렬
-//1. 이름순, 별점순 클릭시 클릭이벤트 발생
+//이름순, 평점순 정렬
+//1. 이름순, 평점순 클릭시 클릭이벤트 발생
 //2. 클릭이 발생하면 기존에 있는 데이터를 가져오기
-//3. 가져온 후 이름순, 별점순으로 순서를 정렬
+//3. 가져온 후 이름순, 평점순으로 순서를 정렬
 //4. 정렬한것을 화면에 그려주기
 //추가) 홈화면 아이콘 누르면 다시 처음페이지, 순서로 돌아갈수있게..!
 
 //이름순 : 한글->숫자->영어 그 외문자... 순서설정
+
 document.querySelector('.nameAlignment').addEventListener('click', event => {
-  const nameAlignment = movies.sort(function (a, b) {
+  localStorage.setItem('nameFix', '이름순');
+  movies = movies.sort(function (a, b) {
     let titleACode = a.title[0].charCodeAt(0);
     let titleBCode = b.title[0].charCodeAt(0);
     if (titleACode <= 12593) titleACode += 999999;
-    if (titleBCode <= 12593) titleBCode += 999999; //(ascii코드)한글을 큰 숫자로 표현해서 한글->숫자->영문순으로 정렬
+    if (titleBCode <= 12593) titleBCode += 999999; //(ascii코드원리)한글을 큰 숫자로 표현해서 한글->숫자->영문순으로 정렬
     return titleACode < titleBCode ? -1 : titleACode > titleBCode ? 1 : 0;
   });
   moviesContainer.innerHTML = '';
   changeColor(event.target);
   displayMovies();
-
   alertId(); // detail.html 로 이동시키기 위해, alertId EventListener 를 재사용.
 });
 
-// 별점순 : 높은순->낮은순 (별점이 동일할경우? 이름순과 동일하게)
-// console.log(movies);
+// 평점순 : 높은순->낮은순 (평점이 동일할경우? 기본정렬)
+
 document.querySelector('.scoreAlignment').addEventListener('click', event => {
-  const scoreAlignment = movies.sort(function (a, b) {
+  localStorage.setItem('scoreFix', '평점순');
+  movies = movies.sort(function (a, b) {
     return b.vote_average - a.vote_average;
   }); //1-3번
   moviesContainer.innerHTML = ''; //기존 카드 지워주기
@@ -217,9 +241,10 @@ document.querySelector('.scoreAlignment').addEventListener('click', event => {
   alertId(); // detail.html 로 이동시키기 위해, alertId EventListener 를 재사용.
 });
 
-//추가) 날짜순 : 개봉일기준 최근부터
+//추가) 최신순 : 개봉일기준 최근부터
 document.querySelector('.dateAlignment').addEventListener('click', event => {
-  const dateAlignment = movies.sort(function (a, b) {
+  localStorage.setItem('dateFix', '최신순');
+  movies = movies.sort(function (a, b) {
     return new Date(b.release_date).getTime() - new Date(a.release_date).getTime();
   });
   moviesContainer.innerHTML = '';
@@ -229,12 +254,7 @@ document.querySelector('.dateAlignment').addEventListener('click', event => {
   alertId(); // detail.html 로 이동시키기 위해, alertId EventListener 를 재사용.
 });
 
-//localStorage를 이용해서 내가 '이름순','별점순','최신순'을 클릭했다는 정보를 저장해두면 페이지를 넘어가도 그대로 정렬이 이루어 질 수 있음
-
-//localStorage를 이용해서 내가 '이름순','별점순','최신순'을 클릭했다는 정보를 저장해두면 페이지를 넘어가도 그대로 정렬이 이루어 질 수 있음*
-
 // 클릭한 요소를 매개변수로 받아옴
-
 const changeColor = target => {
   // 나머지 버튼에서는 color-orange 클래스 전부 삭제*
   document.querySelectorAll('.orderButton').forEach(elem => {
@@ -244,3 +264,12 @@ const changeColor = target => {
   // 클릭한 요소에 color-orange 클래스 추가*
   target.classList.add('color-orange');
 };
+
+//localStorage를 이용해서 내가 '이름순','평점순','최신순'을 클릭했다는 정보를 저장해두면 페이지를 넘어가도 그대로 정렬이 이루어 질 수 있음
+//클릭이벤트로 발생한 새로운 배열데이터 저장하기
+
+// 함수짓는 법
+// function 함수이름() {}
+
+// const 함수이름 = () => {};
+// const 변수이름 = ""
