@@ -1,6 +1,7 @@
 //==================코멘트 저장=================
 
-const inputId = document.getElementById('writer');
+const inputId = document.querySelector('.writer');
+const inputPw = document.querySelector('.password');
 const commentText = document.getElementById('comment');
 const comSaveBtn = document.getElementById('saveBtn');
 // const comeDeleteBtn = document.getElementById('comDelete');
@@ -9,14 +10,17 @@ const comSaveBtn = document.getElementById('saveBtn');
 const saveComment = () => {
   const randomId = Math.round(Math.random() * 10000000);
   const writer = inputId.value;
+  const password = inputPw.value;
   const comment = commentText.value;
   const time = new Date().getTime();
 
   //유효성 검사
-  if (writer === "" || comment === "") {
+  if (writer === '' || comment === '') {
     alert('내용이 입력되지 않았습니다.');
+  } else if (password === '') {
+    alert('비밀번호를 입력해주세요.');
   } else {
-    localStorage.setItem(randomId, JSON.stringify({writer, comment, time}));
+    localStorage.setItem(randomId, JSON.stringify({writer, password, comment, time}));
     alert('저장이 완료되었습니다.');
     window.location.reload();
   }
@@ -30,7 +34,7 @@ const allData = [];
 for (let i = 0; i < localStorage.length; i++) {
   const id = localStorage.key(i);
   const object = JSON.parse(localStorage.getItem(id));
-  allData.push(object);
+  allData.push({id: id, ...object});
 }
 //시간순으로 정렬하기(내림차순으로 정렬- 가장 최근 카드가 가장 위에 오도록)
 allData.sort((a, b) => b.time - a.time);
@@ -72,18 +76,24 @@ allData.forEach(data => {
   commentList.appendChild(card);
 });
 
-console.log(allData);
 //====================삭제===================
 //삭제버튼 클릭시 호출되는 함수
-const deleteComment = function () {
+const deleteComment = function (event) {
   const clickedBtn = event.target;
   const card = clickedBtn.closest('.comCard');
   const id = card.id;
+  const pw = JSON.parse(localStorage.getItem(id)).password;
+  const checkPasswordMatch = prompt('비밀번호를 입력해주세요.');
 
-  if (confirm('코멘트를 삭제할까요?')) {
+  // while(checkPasswordMatch !== pw){
+
+  // }
+  if (checkPasswordMatch === pw) {
     localStorage.removeItem(id);
     alert('정상적으로 삭제되었습니다.');
     card.remove();
+  } else {
+    prompt('비밀번호가 일치하지 않습니다. 다시 입력해주세요.');
   }
 };
 //모든 삭제 버튼 요소 선택

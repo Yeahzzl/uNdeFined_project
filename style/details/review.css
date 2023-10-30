@@ -16,7 +16,7 @@
   /* background-color: green; */
   width: 650px;
   height: 45px;
-  margin: 10px 0 10px 0;
+  margin: 10px 0;
 }
 
 .nameArea {
@@ -29,11 +29,11 @@
 }
 
 .btnArea {
-  margin: 10px 0 10px 0;
+  margin: 10px 0;
   border-top: 0.5px solid gainsboro;
 }
 
-#writer {
+.writer {
   width: 120px;
   height: 30px;
   /* margin: 0 545px 5px 0; */
@@ -41,11 +41,17 @@
   border-bottom: 0.5px solid #111;
 }
 
-#writer::placeholder {
+.password {
+  width: 120px;
+  height: 20px;
+  border: 1px solid grey;
+}
+
+.userInfo::placeholder {
   color: rgb(193, 193, 193);
 }
 
-#writer:focus {
+.userInfo:focus {
   outline: none;
 }
 
@@ -81,12 +87,11 @@
   padding: 0;
 }
 .comCard {
- 
   position: relative;
   list-style: none;
   /* background-color: bisque; */
   width: 700px;
-  margin: 0 auto 0 auto;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
 
@@ -125,4 +130,57 @@
   margin: 20px;
   font-size: 14px;
   font-weight: 400;
+}
+
+.editArea {
+  height: 150px;
+  border: 1px solid gainsboro;
+  border-radius: 3px;
+}
+
+.editArea button {
+  width: 70px;
+  height: 35px;
+  border-radius: 5px;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.editBox {
+  width: 650px;
+  height: 80px;
+  resize: none;
+  overflow: hidden;
+  margin: 10px 0 0 20px ;
+  border: 1px solid gainsboro;
+
+}
+
+.editBox:focus {
+  outline: none;
+}
+
+.completeEditing {
+  position: relative;
+  background-color: rgb(58, 84, 171);
+  border: none;
+  color:#fff;
+  margin-left: 525px;
+}
+.completeEditing:hover {
+  background-color: rgb(35, 50, 101);
+}
+
+.cancelEditing {
+  position: absolute;
+  background-color: #fff;
+  color: #111;
+  border: none;
+  margin-left: 10px;
+  border: 1px solid #111;
+}
+.cancelEditing:hover {
+  background-color: #fff;
+  color: rgb(58, 84, 171);
+  border: 1.5px solid rgb(58, 84, 171);
 }
