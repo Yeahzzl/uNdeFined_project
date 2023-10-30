@@ -33,7 +33,7 @@
   border-top: 0.5px solid gainsboro;
 }
 
-#writer {
+.writer {
   width: 120px;
   height: 30px;
   /* margin: 0 545px 5px 0; */
@@ -41,11 +41,17 @@
   border-bottom: 0.5px solid #111;
 }
 
-#writer::placeholder {
+.password {
+  width: 120px;
+  height: 20px;
+  border: 1px solid grey;
+}
+
+.userInfo::placeholder {
   color: rgb(193, 193, 193);
 }
 
-#writer:focus {
+.userInfo:focus {
   outline: none;
 }
 
