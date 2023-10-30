@@ -35,12 +35,12 @@ for (let i = 0; i < localStorage.length; i++) {
                       <p class="comInfo">2023.10.26 00:01</p>
                   </div>`;
   commentList.appendChild(card);
-//   console.log(card);
+  //   console.log(card);
 }
 
 //코멘트 삭제
 const deleteComment = function () {
-  const card = document.querySelector('.comCard')
+  const card = document.querySelector('.comCard');
   const id = card.id;
   if (confirm('코멘트를 삭제할까요?')) {
     localStorage.removeItem(id);
@@ -50,8 +50,8 @@ const deleteComment = function () {
 };
 const delCommentBtns = document.querySelectorAll('.comDelete');
 delCommentBtns.forEach(button => {
-    button.addEventListener('click', deleteComment);
-})
+  button.addEventListener('click', deleteComment);
+});
 
 //카드내용 수정
 // const editCommentBtn = document.querySelectorAll('.comEdit');
