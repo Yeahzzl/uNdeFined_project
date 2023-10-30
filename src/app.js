@@ -1,5 +1,5 @@
 import {makePagination} from './paging.js';
-import {hideLoading, showLoading} from './helper.js';
+import {hideLoading, showLoading, validationInput} from './helper.js';
 
 const options = {
   method: 'GET',
@@ -55,14 +55,17 @@ const displayMovies = () => {
       return `https://image.tmdb.org/t/p/original${posterPath}`;
     };
     //받아온 영화 데이터 카드 만들어서 html에 붙이기
+    // 가운데 정렬을 하기 위해 <span class='overview'> 와 <img>를 하나의 <div> 안으로 넣음 (width 통일 위해)
     const tempHtml = `
                             <div class='img_container'>
                                 <div class='movie_poster'>
-                                    <img id='${id}' class='poster_img'
+                                    <div class='position_relative'>
+                                        <span class='overview'>${overview}</span>
+                                        <img id='${id}' class='poster_img'
                                         src='${getImageUrl(posterPath)}'
                                         alt='${title}'>
+                                    </div>
                                 </div>
-                                <span class='overview'>${overview}</span>
                                 <div class='movie_cont'>
                                     <strong>${title}</strong>
                                         <span class='cont_text'>평점 ${voteAverage}</span>
@@ -98,6 +101,10 @@ const searchInput = document.querySelector('#search_input');
 const searchButton = document.querySelector('#search_button');
 const searchMovies = () => {
   let searchWord = searchInput.value;
+
+  // 입력어 검증
+  if (!validationInput(searchWord)) return;
+
   fetch(
     `https://api.themoviedb.org/3/search/movie?query=${searchWord}&include_adult=false&language=ko-KR&page=1&region=KR`,
     options,
@@ -182,7 +189,7 @@ searchInput.addEventListener('keyup', function (event) {
 //추가) 홈화면 아이콘 누르면 다시 처음페이지, 순서로 돌아갈수있게..!
 
 //이름순 : 한글->숫자->영어 그 외문자... 순서설정
-document.querySelector('.nameAlignment').addEventListener('click', () => {
+document.querySelector('.nameAlignment').addEventListener('click', event => {
   const nameAlignment = movies.sort(function (a, b) {
     let titleACode = a.title[0].charCodeAt(0);
     let titleBCode = b.title[0].charCodeAt(0);
@@ -191,6 +198,7 @@ document.querySelector('.nameAlignment').addEventListener('click', () => {
     return titleACode < titleBCode ? -1 : titleACode > titleBCode ? 1 : 0;
   });
   moviesContainer.innerHTML = '';
+  changeColor(event.target);
   displayMovies();
 
   alertId(); // detail.html 로 이동시키기 위해, alertId EventListener 를 재사용.
@@ -198,25 +206,41 @@ document.querySelector('.nameAlignment').addEventListener('click', () => {
 
 // 별점순 : 높은순->낮은순 (별점이 동일할경우? 이름순과 동일하게)
 // console.log(movies);
-document.querySelector('.scoreAlignment').addEventListener('click', () => {
+document.querySelector('.scoreAlignment').addEventListener('click', event => {
   const scoreAlignment = movies.sort(function (a, b) {
     return b.vote_average - a.vote_average;
   }); //1-3번
   moviesContainer.innerHTML = ''; //기존 카드 지워주기
+  changeColor(event.target);
   displayMovies(); //4번
 
   alertId(); // detail.html 로 이동시키기 위해, alertId EventListener 를 재사용.
 });
 
 //추가) 날짜순 : 개봉일기준 최근부터
-document.querySelector('.dateAlignment').addEventListener('click', () => {
+document.querySelector('.dateAlignment').addEventListener('click', event => {
   const dateAlignment = movies.sort(function (a, b) {
     return new Date(b.release_date).getTime() - new Date(a.release_date).getTime();
   });
   moviesContainer.innerHTML = '';
+  changeColor(event.target);
   displayMovies();
 
   alertId(); // detail.html 로 이동시키기 위해, alertId EventListener 를 재사용.
 });
 
 //localStorage를 이용해서 내가 '이름순','별점순','최신순'을 클릭했다는 정보를 저장해두면 페이지를 넘어가도 그대로 정렬이 이루어 질 수 있음
+
+//localStorage를 이용해서 내가 '이름순','별점순','최신순'을 클릭했다는 정보를 저장해두면 페이지를 넘어가도 그대로 정렬이 이루어 질 수 있음*
+
+// 클릭한 요소를 매개변수로 받아옴
+
+const changeColor = target => {
+  // 나머지 버튼에서는 color-orange 클래스 전부 삭제*
+  document.querySelectorAll('.orderButton').forEach(elem => {
+    elem.classList.remove('color-orange');
+  });
+
+  // 클릭한 요소에 color-orange 클래스 추가*
+  target.classList.add('color-orange');
+};
