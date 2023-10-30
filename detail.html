@@ -10,9 +10,30 @@
     <script type="module" src="src/details/detail.js"></script>
   </head>
 
-  <body>
-    <div class="backBtnContainer">
-      <button id="backBtn" class="backButton">Back</button>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detail</title>
+  <link rel="stylesheet" href="/style/details/review.css" />
+  <script type="module" src="src/details/review.js"></script>
+  <link href="style/details/detail.css" rel="stylesheet" type="text/css" />
+  <script type="module" src="src/details/detail.js"></script>
+</head>
+
+<body>
+  <div class="backBtnContainer">
+    <button id="backBtn" class="backButton">Back</button>
+  </div>
+  <div class="pageContainer">
+    <div id="movieDetails" class="detailPage"></div>
+  </div>
+  <!-- <div>리뷰작성</div> -->
+  <!-- 코멘트작성 필드 -->
+  <form id="commentForm">
+    <div class="inputArea nameArea">
+      <input class="userInfo writer" type="text" placeholder=" 작성자" autofocus />
+      <input class="userInfo password" type="password" placeholder="비밀번호">
     </div>
     <div class="pageContainer">
       <div id="movieDetails" class="detailPage"></div>
