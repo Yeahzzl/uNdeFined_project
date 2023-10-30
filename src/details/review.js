@@ -82,6 +82,7 @@ allData.forEach(data => {
 const deleteComment = function (event) {
   const clickedBtn = event.target;
   const card = clickedBtn.closest('.comCard');
+
   const id = card.id;
   const pw = JSON.parse(localStorage.getItem(id)).password;
   let checkPasswordMatch = prompt('비밀번호를 입력해주세요.');

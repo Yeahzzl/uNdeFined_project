@@ -5,6 +5,14 @@ body {
   padding: 0;
 }
 
+h1 {
+  margin: 15px auto 10px auto;
+}
+
+h4 {
+  margin: 5px auto 5px auto;
+}
+
 ::-webkit-scrollbar {
   display: none;
 }
@@ -19,11 +27,11 @@ body {
 .detailPage {
   /* background-color: green; */
 
-  width: 500px;
+  width: 800px;
 
   border-radius: 20px;
 
-  box-shadow: 0px 15px 20px 0px #777;
+  box-shadow: 0px 3px 13px 0px #77777779;
 }
 
 .posterImg {
@@ -36,16 +44,39 @@ body {
 .titleIcon {
   max-width: 25px;
   max-height: 25px;
+
+  margin-top: 0;
 }
 
 .textContainer {
-  /* background-color: bisque; */
-
   padding: 20px;
 }
 
-.detailTextContainer {
-  border-top: 2px dotted #777;
+.detailButton {
+  background-color: transparent;
+
+  border: 0px solid transparent;
+
+  font-size: 24px;
+
+  margin: 10px auto 10px auto;
+}
+
+/* .footerTextContainer {
+  border-top: 4px dotted #777;
+  margin-top: 10px;
+} */
+
+.detailTextParent {
+  display: flex;
+}
+
+.detailText1 {
+  margin: 10px auto auto 5px;
+}
+
+.detailText2 {
+  margin: 10px auto auto auto;
 }
 
 .backBtnContainer {

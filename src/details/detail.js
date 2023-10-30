@@ -17,50 +17,82 @@ fetch(`https://api.themoviedb.org/3/movie/${movieId}?language=ko-KR`, options)
     const movieDetailsContainer = document.getElementById('movieDetails');
     movieDetailsContainer.innerHTML = `
                   <div class="imgContainer" id="${movieDetails.id}"><img class="posterImg" 
-                  src="https://image.tmdb.org/t/p/w780/${movieDetails.backdrop_path}" alt="poster">
+                  src="https://image.tmdb.org/t/p/w1280/${movieDetails.backdrop_path}" alt="poster">
                   </div>
                       <div class="textContainer">
-                      <p class="titleIcon">
+                      <div class=""headTextContainer>
+                      <p class="titleIcon" style="font-size: 20px;">
                       🎥
                       </p>
-                      <h2 class="movie-title">${movieDetails.title}</h2>
-                      <p class="overview" style="color: #777">
-                      ${movieDetails.overview}
-                      </p>
-                      <h4>
+                      <h1 class="movie-title">${movieDetails.title}</h1>
+                      <h4 style="font-size: 20px;">
                       ⭐ :  ${Math.floor(movieDetails.vote_average)} 점
                       </h4>
-                      <div class="detailTextContainer">
-                      <h3>
-                      상세정보
-                      </h3>
+                      <p class="overview" style="color: #777;">
+                      ${movieDetails.overview}
+                      </p>
+                      </div>
+                      <div class="footerTextContainer">
+                      <div id="detailTextParentId" class="detailTextParent">
+                      <div class="detailText1">
+                      <p style="font-weight: bold;">
+                      📅_개봉예정일
+                      </p>
                       <p class="release-date">
-                      📅 _ ${movieDetails.release_date}
+                      ${movieDetails.release_date}
+                      </p>
+                      <p style="font-weight: bold;">
+                      📢_개봉상황
                       </p>
                       <p class="status">
-                      📢 _ ${movieDetails.status}
+                      ${movieDetails.status}
+                      </p>
+                      <p style="font-weight: bold;">
+                      🔊_언어
                       </p>
                       <p class="spoken-languages">
-                      🔊 _ ${movieDetails.original_language}
+                      ${movieDetails.original_language}
+                      </p>
+                      <p style="font-weight: bold;">
+                      ⏱_상영시간
                       </p>
                       <p class="runtime">
-                      ⏱ _ ${movieDetails.runtime}분
+                      ${movieDetails.runtime}분
+                      </p>
+                      </div>
+                      <div class="detailText2">
+                      <p style="font-weight: bold;">
+                      🎬_장르
                       </p>
                       <p class="genres">
-                      🎬 _ ${movieDetails.genres.map(genre => genre.name).join(' , ')}
+                      ${movieDetails.genres.map(genre => genre.name).join(' , ')}
+                      </p>
+                      <p style="font-weight: bold;">
+                      🌍_제작국가
                       </p>
                       <p class="production-countries">
-                      🌍 _ ${movieDetails.production_countries.map(countries => countries.name).join(' & ')}
+                      ${movieDetails.production_countries.map(countries => countries.name).join(' & ')}
+                      </p>
+                      <p style="font-weight: bold;">
+                      🦺_제작사
                       </p>
                       <p class="production-companies">
-                      🦺 _ ${movieDetails.production_companies.map(companies => companies.name).join(' , ')}
+                      ${movieDetails.production_companies.map(companies => companies.name).join(' , ')}
+                      </p>
+                      <p style="font-weight: bold;">
+                      💰_제작비
                       </p>
                       <p class="budget">
-                      💰 _ ${movieDetails.budget} 달러
+                      ${movieDetails.budget} 달러
+                      </p>
+                      <p style="font-weight: bold;">
+                      🎉_흥행수익
                       </p>
                       <p class="revenue">
-                      🎉 _ ${movieDetails.revenue} 달러
+                      ${movieDetails.revenue} 달러
                       </p>
+                      </div>
+                      </div>
                       </div>
                       </div>`;
   })
@@ -72,9 +104,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
   backButton.addEventListener('click', function () {
     // 뒤로가기 버튼시 localstorage에서 pageNumber가 있다면 가져와 URL 생성
-    window.location.href = `index.html?pageNum=${localStorage.getItem("pageNumber") ?? 1}`;
+    window.location.href = `index.html?pageNum=${localStorage.getItem('pageNumber') ?? 1}`;
   });
 });
+
 // toTopBtn 클릭 시, 스크롤 즉시 위로 끌어올리는 코드
 document.getElementById('toTopBtn').addEventListener('click', function () {
   window.scrollTo({
